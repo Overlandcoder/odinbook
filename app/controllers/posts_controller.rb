@@ -19,10 +19,10 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to user_post_path(current_user.id, @post.id)
-      # flash[:success]
+      flash[:success] = "New post created."
     else
       render :new, status: :unprocessable_entity
-      # flash
+      flash.now[:error] = "The post couldn't be created, please fix the errors."
     end
   end
 

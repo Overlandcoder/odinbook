@@ -1,5 +1,9 @@
-<h2>User Info</h2>
-<p><b>Username: </b><%= @user.username %>
+<h2>Viewing <%= @user.username.capitalize %>'s Profile</h2>
 <p><b>Posts created: </b><%= link_to "#{@user.posts.count}", user_posts_path(@user.id) %></p>
+<p><b>Friends: </b><%= "#{@user.friends.count}" %>
 <p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
-<%= button_to "Add Friend", new_friendship_path %>
+
+<% unless @user == current_user %>
+  <%= button_to "Add Friend", friendships_path,
+        params: { friendship: { user_id: current_user.id, friend_id: @user.id } } %>
+<% end %>

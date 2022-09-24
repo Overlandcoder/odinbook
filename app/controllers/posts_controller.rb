@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:user_id])
   end
 
   def new
@@ -15,10 +15,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to @post
+      redirect_to user_post_path(current_user.id, @post.id)
       # flash[:success]
     else
       render :new, status: :unprocessable_entity

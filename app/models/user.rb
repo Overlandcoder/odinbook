@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: :author_id
   has_many :friendships
   has_many :friends, through: :friendships
+
+  validates :email, uniqueness: true
+  validates :username, uniqueness: true
 end

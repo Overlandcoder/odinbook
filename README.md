@@ -1,24 +1,8 @@
-# README
+# Odinbook
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is for the Facebook Clone project from The Odin Project's Ruby on Rails curriculum, and it is the final project in the Rails section. Find it at http://www.theodinproject.com.
 
-Things you may want to cover:
+The goal here is to build a basic Facebook clone.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Possible Future Implementations:
+- Allow users to change their username

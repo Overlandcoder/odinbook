@@ -10,4 +10,8 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true
+
+  def created_time_formatted
+    created_at.strftime("%b %-d, %Y")
+  end
 end

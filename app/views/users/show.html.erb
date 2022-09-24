@@ -1,0 +1,5 @@
+<h2>User Info</h2>
+<p><b>Username: </b><%= @user.username %>
+<p><b>Posts created: </b><%= @user.posts.count %></p>
+<p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
+<%= button_to "Add Friend", new_friendship_path %>

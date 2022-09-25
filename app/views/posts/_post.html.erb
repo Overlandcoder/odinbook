@@ -1,3 +1,3 @@
 By: <%= link_to "#{post.author.username}", user_path(post.author.id) %>
-<%= post.created_time_formatted %>
-<br><p><%= post.body.capitalize %></p>
+<%= "| #{post.created_time_formatted}" %>
+<br><p><%= post.body %></p>

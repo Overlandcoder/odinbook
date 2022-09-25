@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :posts
+    resources :friend_requests
   end
   resources :friendships
-  resources :friend_requests
 end

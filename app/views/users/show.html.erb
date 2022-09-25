@@ -1,16 +1,17 @@
 <h2>Viewing <%= @user.username.capitalize %>'s Profile</h2>
 <p><b>Posts created: </b><%= link_to "#{@user.posts.count}", user_posts_path(@user.id) %></p>
 <p><b>Friends: </b><%= "#{@user.friends.count}" %>
-<p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
-
-<% unless @user == current_user %>
-  <%= button_to "Add Friend", friend_requests_path,
-        params: { friend_request: {
-                                request_sender_id: current_user.id,
-                                request_receiver_id: @user.id } } %>
-<% end %>
 
 <% if @user == current_user %>
   <p><b>Friend Requests: </b><%= link_to "#{@user.friend_requests.count}",
                                   friend_requests_path(@user.id) %>
+<% end %>
+
+<p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
+
+<% unless @user == current_user || @user.friend?(current_user) %>
+  <%= button_to "Add Friend", friend_requests_path,
+        params: { friend_request: {
+                                request_sender_id: current_user.id,
+                                request_receiver_id: @user.id } } %>
 <% end %>

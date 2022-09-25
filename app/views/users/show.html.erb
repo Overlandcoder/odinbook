@@ -4,6 +4,13 @@
 <p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
 
 <% unless @user == current_user %>
-  <%= button_to "Add Friend", friendships_path,
-        params: { friendship: { user_id: current_user.id, friend_id: @user.id } } %>
+  <%= button_to "Add Friend", friend_requests_path,
+        params: { friend_request: {
+                                request_sender_id: current_user.id,
+                                request_receiver_id: @user.id } } %>
+<% end %>
+
+<% if @user == current_user %>
+  <p><b>Friend Requests: </b><%= link_to "#{@user.friend_requests.count}",
+                                  friend_requests_path(@user.id) %>
 <% end %>

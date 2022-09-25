@@ -3,7 +3,7 @@
 <p><b>Friends: </b><%= "#{@user.friends.count}" %>
 
 <% if @user == current_user %>
-  <p><b>Friend Requests: </b><%= link_to "#{@user.friend_requests.count}",
+  <p><b>Friend Requests: </b><%= link_to "#{@user.friend_requests_received.count}",
                                   friend_requests_path(@user.id) %>
 <% end %>
 

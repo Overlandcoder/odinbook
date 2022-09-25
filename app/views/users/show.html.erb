@@ -12,6 +12,6 @@
 <% unless @user == current_user || @user.friend?(current_user) %>
   <%= button_to "Add Friend", friend_requests_path,
         params: { friend_request: {
-                                request_sender_id: current_user.id,
-                                request_receiver_id: @user.id } } %>
+                                sender_id: current_user.id,
+                                receiver_id: @user.id } } %>
 <% end %>

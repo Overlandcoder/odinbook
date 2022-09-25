@@ -7,13 +7,20 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: :author_id
   has_many :friendships
   has_many :friends, through: :friendships
-  has_many :friend_requests, foreign_key: :request_receiver_id
-  has_many :request_receivers, through: :friend_requests
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: :friend_id
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
+  has_many :friend_requests_received, foreign_key: :receiver_id, class_name: "FriendRequest"
+  has_many :friend_requests_sent, foreign_key: :sender_id, class_name: "FriendRequest"
+
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true
 
   def created_time_formatted
     created_at.strftime("%b %-d, %Y")
+  end
+
+  def friend?(user)
+    friends.include?(user)
   end
 end

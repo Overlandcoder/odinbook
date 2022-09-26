@@ -85,11 +85,19 @@ RSpec.describe 'User', type: :feature do
     end
   
     it 'creates the friendship for the request receiver' do
+      expect(user2.friends.any? { |h| h[:user_id] == user1.id }).to be true
+    end
+
+    it 'increments friends of request receiver by 1' do
       expect(user2.friends.count).to eq(1)
     end
 
-    it 'creates the friendship for the request sender' do
+    it 'increments friends of request sender by 1' do
       expect(user1.friends.count).to eq(1)
+    end
+
+    xit 'creates the friendship for the request sender' do
+      expect(user1.friends.any?).to include(user2.username)
     end
   end
 

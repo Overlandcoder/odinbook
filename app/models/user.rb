@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :accepted_friendships, foreign_key: :friend_id, class_name: "Friendship"
   has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
-
+  has_many :initiated_friends, through: :initiated_friendships, source: :friend
+  has_many :accepted_friends, through: :accepted_friendships, source: :user
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true
@@ -23,19 +24,8 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  def friendships
-    initiated_friendships + accepted_friendships
-  end
-
   def friends
-    all_friends = []
-
-    friendships.each do |friendship|
-      all_friends << friendship.friend unless friendship.friend == self
-      all_friends << friendship.user unless friendship.user == self
-    end
-
-    all_friends
+    initiated_friends + accepted_friends
   end
 
   # def user_friends

@@ -22,7 +22,7 @@ RSpec.describe 'User', type: :feature do
   context 'when viewing profile of another user' do
     before do
       login_as(user1)
-      visit user_path(2)
+      visit user_path(user2.id)
     end
 
     it 'displays the profile' do
@@ -33,24 +33,77 @@ RSpec.describe 'User', type: :feature do
   context 'when sending a friend request' do
     before do
       login_as(user1)
-      visit user_path(2)
-      click_on "Add Friend"
+      visit user_path(user2.id)
     end
 
-    it 'sends a friend request to the other user' do
-      expect(user1.friend_requests_sent.count).to eq(1)
+    it 'increments friend_requests_sent for the user that clicks Add Friend' do
+      expect { click_on "Add Friend" }.to change { user1.friend_requests_sent.count }.from(0).to(1)
     end
 
-    it 'other user receives a friend request' do
-      expect(user2.friend_requests_received.count).to eq(1)
+    it 'increments friend_requests_received for the user receiving the request' do
+      expect { click_on "Add Friend" }.to change { user2.friend_requests_received.count }.from(0).to(1)
     end
 
     it 'sends the request to the correct user' do
+      click_on "Add Friend"
       expect(user1.friend_requests_sent.first.receiver).to eq(user2)
     end
 
     it 'other user receives the request from the correct user' do
+      click_on "Add Friend"
       expect(user2.friend_requests_received.first.sender).to eq(user1)
     end
   end
+
+  context 'when a user has a friend request' do
+    before do
+      login_as(user1)
+      visit user_path(user2.id)
+      click_on "Add Friend"
+      login_as(user2)
+      visit user_path(user2.id)
+    end
+
+    it 'displays the correct amount of friend requests' do
+      expect(page).to have_content "Friend Requests: 1"
+    end
+
+    it 'shows the correct friend request' do
+      visit user_friend_requests_path(user2.id)
+      expect(page).to have_content "From: #{user1.username}"
+    end
+  end
+
+  context 'when a user accepts a friend request' do
+    before do
+      login_as(user1)
+      visit user_path(user2.id)
+      click_on "Add Friend"
+      login_as(user2)
+      visit user_friend_requests_path(user2.id)
+      click_on "Accept Request"
+    end
+  
+    it 'creates the friendship for the request receiver' do
+      expect(user2.friends.count).to eq(1)
+    end
+
+    it 'creates the friendship for the request sender' do
+      expect(user1.friends.count).to eq(1)
+    end
+  end
+
+  context 'when viewing own profile' do
+    before do
+      login_as(user1)
+      visit user_path(user1.id)
+    end
+
+    it 'does not show Add Friend button' do
+      expect(page).not_to have_button "Add Friend"
+    end
+  end
 end
+
+# To open test coverage report:
+# xdg-open coverage/index.html

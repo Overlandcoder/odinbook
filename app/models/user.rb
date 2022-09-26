@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
   has_many :initiated_friends, through: :initiated_friendships, source: :friend
   has_many :accepted_friends, through: :accepted_friendships, source: :user
+  has_many :comments, foreign_key: :author_id
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true

@@ -8,7 +8,7 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
-    @friend_request = current_user.friend_requests_sent.build(friend_request_params)
+    @friend_request = current_user.sent_friend_requests.build(friend_request_params)
 
     if @friend_request.save
       flash.now[:success] = "Friend request sent."

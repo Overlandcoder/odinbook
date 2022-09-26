@@ -7,9 +7,8 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: :author_id
   has_many :initiated_friendships, foreign_key: :user_id, class_name: "Friendship"
   has_many :accepted_friendships, foreign_key: :friend_id, class_name: "Friendship"
-  # rename to received_friend_requests and sent_friend_requests
-  has_many :friend_requests_received, foreign_key: :receiver_id, class_name: "FriendRequest"
-  has_many :friend_requests_sent, foreign_key: :sender_id, class_name: "FriendRequest"
+  has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"
+  has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
 
 
   validates :email, uniqueness: true
@@ -24,11 +23,24 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  def friends
+  def friendships
     initiated_friendships + accepted_friendships
   end
 
-  def user_friends
-    User.where()
+  def friends
+    all_friends = []
+
+    friendships.each do |friendship|
+      all_friends << friendship.friend unless friendship.friend == self
+      all_friends << friendship.user unless friendship.user == self
+    end
+
+    all_friends
   end
+
+  # def user_friends
+    # User.where(friends.any? { |h| h[:user_id] == self.id || h[:friend_id] == self.id })
+    # friends.friends.where(friends.any? { |h| h[:user_id] == self.id || h[:friend_id] == self.id })
+    # maybe use User.all.where
+  # end
 end

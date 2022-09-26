@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = current_user.friendships.create(friendship_params)
+    @friendship = current_user.accepted_friendships.build(friendship_params)
 
     if @friendship.save
       # flash[:success]

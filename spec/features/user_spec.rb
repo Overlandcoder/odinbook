@@ -36,22 +36,22 @@ RSpec.describe 'User', type: :feature do
       visit user_path(user2.id)
     end
 
-    it 'increments friend_requests_sent for the user that clicks Add Friend' do
-      expect { click_on "Add Friend" }.to change { user1.friend_requests_sent.count }.from(0).to(1)
+    it 'increments sent_friend_requests for the user that clicks Add Friend' do
+      expect { click_on "Add Friend" }.to change { user1.sent_friend_requests.count }.from(0).to(1)
     end
 
-    it 'increments friend_requests_received for the user receiving the request' do
-      expect { click_on "Add Friend" }.to change { user2.friend_requests_received.count }.from(0).to(1)
+    it 'increments received_friend_requests for the user receiving the request' do
+      expect { click_on "Add Friend" }.to change { user2.received_friend_requests.count }.from(0).to(1)
     end
 
     it 'sends the request to the correct user' do
       click_on "Add Friend"
-      expect(user1.friend_requests_sent.first.receiver).to eq(user2)
+      expect(user1.sent_friend_requests.first.receiver).to eq(user2)
     end
 
     it 'other user receives the request from the correct user' do
       click_on "Add Friend"
-      expect(user2.friend_requests_received.first.sender).to eq(user1)
+      expect(user2.received_friend_requests.first.sender).to eq(user1)
     end
   end
 
@@ -85,7 +85,19 @@ RSpec.describe 'User', type: :feature do
     end
   
     it 'creates the friendship for the request receiver' do
-      expect(user2.friends.any? { |h| h[:user_id] == user1.id }).to be true
+      expect(user2.friends).to include(user1)
+    end
+
+    it 'does not add self as friend of self' do
+      expect(user2.friends).not_to include(user2)
+    end
+
+    it 'does not add self as friend of self' do
+      expect(user1.friends).not_to include(user1)
+    end
+
+    it 'creates the friendship for the request sender' do
+      expect(user1.friends).to include(user2)
     end
 
     it 'increments friends of request receiver by 1' do
@@ -94,10 +106,6 @@ RSpec.describe 'User', type: :feature do
 
     it 'increments friends of request sender by 1' do
       expect(user1.friends.count).to eq(1)
-    end
-
-    xit 'creates the friendship for the request sender' do
-      expect(user1.friends.any?).to include(user2.username)
     end
   end
 

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating posts', type: :feature do
-  let!(:johndoe) { FactoryBot.create(:user) }
+  let!(:user1) { FactoryBot.create(:user, id: 1) }
 
   before do
-    login_as(johndoe)
+    login_as(user1)
     visit root_path
     click_on 'New Post'
     fill_in 'Title', with: "Some post"
@@ -17,14 +17,14 @@ RSpec.describe 'Creating posts', type: :feature do
       expect(page).to have_content "New post created."
     end
 
-    it 'increases the number of posts count of the user' do
-      expect(johndoe.posts.count).to eq(1)
+    it 'increases post count of the user' do
+      expect(user1.posts.count).to eq(1)
     end
   end
 
   context 'when viewing a post' do
     it 'contains the author info' do
-      expect(page).to have_content "By: #{johndoe.username}"
+      expect(page).to have_content "By: #{user1.username}"
     end
   end
 end

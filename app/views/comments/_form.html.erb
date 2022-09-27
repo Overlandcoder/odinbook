@@ -1,5 +1,6 @@
-<%= form_with model: @comment do |form| %>
-  <%= form.label :body, "Comments" %>
-  <%= form.text_area :body, placeholder: "Add a new comment" %>
+<%= form_with model: [@post, @post.comments.build] do |form| %>
+  <%= form.hidden_field :commenter_id, value: current_user.id %>
+  <%= form.label :body, "New Comment" %>
+  <%= form.text_area :body, placeholder: "Add a new comment..." %>
   <%= form.submit "Post Comment" %>
 <% end %>

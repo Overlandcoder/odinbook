@@ -1,11 +1,12 @@
 <h1>Posts</h1>
 
 <ul>
-  <% @users.each do |user| %>
-    <% user.posts.each do |post| %>
+  <% @posts.each do |post| %>
+    <li>
       <h2><%= link_to "#{post.title.capitalize}", post_path(post.id) %></h2>
       <%= render "post", post: post %>
-    <% end %>
+    </li>
   <% end %>
 </ul>
+
 <%= button_to "New Post", new_user_post_path(current_user.id), method: "get" %>

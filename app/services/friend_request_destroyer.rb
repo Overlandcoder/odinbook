@@ -1,4 +1,4 @@
-class FriendRequestDestroyer
+class FriendRequestDestroyer < ApplicationService
   attr_reader :sender_id, :receiver_id
 
   def initialize(params)
@@ -6,7 +6,7 @@ class FriendRequestDestroyer
     @receiver_id = params[:friend_id]
   end
 
-  def destroy_friend_request
+  def call
     FriendRequest.find_by(sender_id: sender_id, receiver_id: receiver_id).delete
   end
 end

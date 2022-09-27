@@ -3,7 +3,7 @@
 <ul>
   <% @users.each do |user| %>
     <% user.posts.each do |post| %>
-      <h2><%= link_to "#{post.title.capitalize}", user_post_path(user.id, post.id) %></h2>
+      <h2><%= link_to "#{post.title.capitalize}", post_path(post.id) %></h2>
       <%= render "post", post: post %>
     <% end %>
   <% end %>

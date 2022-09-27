@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   root "posts#index"
 
   resources :users do
-    resources :posts
+    resources :posts, only: [:index, :new, :create]
     resources :friend_requests
     resources :friendships
+  end
+
+  resources :posts, only: [:show, :edit, :update, :destroy] do
+    resources :comments
   end
 end

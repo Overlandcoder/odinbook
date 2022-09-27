@@ -1,3 +1,3 @@
 class Comment < ApplicationRecord
-  belongs_to :author, class: "User"
+  belongs_to :author, class_name: "User"
 end

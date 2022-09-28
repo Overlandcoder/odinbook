@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
 
     if @comment.save!
       redirect_to post_path(@post)
+      flash[:success] = "Comment posted."
     else
       render :new, status: :unprocessable_entity
       flash.now[:error] = "Comment couldn't be posted."

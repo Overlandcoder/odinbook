@@ -37,11 +37,13 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'increments sent_friend_requests for the user that clicks Add Friend' do
-      expect { click_on "Add Friend" }.to change { user1.sent_friend_requests.count }.from(0).to(1)
+      expect { click_on "Add Friend" }.
+        to change { user1.sent_friend_requests.count }.from(0).to(1)
     end
 
     it 'increments received_friend_requests for the user receiving the request' do
-      expect { click_on "Add Friend" }.to change { user2.received_friend_requests.count }.from(0).to(1)
+      expect { click_on "Add Friend" }.
+        to change { user2.received_friend_requests.count }.from(0).to(1)
     end
 
     it 'sends the request to the correct user' do

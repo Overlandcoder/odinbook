@@ -1,11 +1,14 @@
 <h1>Friend Requests</h1>
 
 <% @friend_requests.each do |friend_request| %>
-  <% unless friend_request.sender.friend?(current_user) %>
-    <p><b>From: </b><%= friend_request.sender.username %>
-      <%= button_to "Accept Request", friendships_path,
-            params: { friendship: { user_id: friend_request.sender.id,
-                                    friend_id: current_user.id } } %>
-    </p>
-  <% end %>
+  <p>
+    <b>From: </b><%= link_to "#{friend_request.sender.username}",
+                   user_path(friend_request.sender.id) %>
+    <%= button_to "Accept Request", user_friendships_path(current_user.id),
+          params: { friendship: { user_id: friend_request.sender.id,
+                                  friend_id: current_user.id
+                                }
+                  }
+    %>
+  </p>
 <% end %>

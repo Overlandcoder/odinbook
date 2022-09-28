@@ -22,8 +22,12 @@ class User < ApplicationRecord
   end
 
   # method needs revision
-  def friend?(user)
-    friends.include?(user)
+  def friend?(other_user)
+    friends.include?(other_user)
+  end
+
+  def can_be_friends_with?(other_user)
+    self != other_user && !friend?(other_user)
   end
 
   def friends

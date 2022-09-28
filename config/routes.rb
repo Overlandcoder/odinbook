@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:show, :edit, :update, :destroy] do
     resources :comments
+    resources :likes
   end
 end

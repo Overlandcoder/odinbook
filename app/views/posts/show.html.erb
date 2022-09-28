@@ -1,6 +1,15 @@
 <h2><%= @post.title.capitalize %></h2>
 <%= render "post", post: @post %>
 
+<%= pluralize(@post.likes.count, "Like") %>
+
+<% if @post.liked_by?(current_user) %>
+  <%= button_to "Unlike", post_like_path(@post.id), method: "destroy" %>
+<% else %>
+  <%= button_to "Like" , post_likes_path(@post.id),
+      params: { like: { user_id: current_user.id, post_id: @post.id } } %>
+<% end %>
+
 <% @post.comments.each do |comment| %>
   <p><%= comment.body %></p>
 <% end %>

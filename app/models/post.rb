@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def created_time_formatted
     created_at.strftime("%b %-d, %Y - %l:%M %P")
   end
+
+  def liked_by?(user)
+    likes.any? { |like| like.user == user }
+  end
 end

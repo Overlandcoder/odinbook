@@ -21,22 +21,19 @@ class User < ApplicationRecord
     created_at.strftime("%b %-d, %Y")
   end
 
-  # method needs revision
-  def friend?(other_user)
-    friends.include?(other_user)
-  end
-
-  def can_be_friends_with?(other_user)
-    self != other_user && !friend?(other_user)
-  end
-
   def friends
     initiated_friends + accepted_friends
   end
 
-  # def user_friends
-    # User.where(friends.any? { |h| h[:user_id] == self.id || h[:friend_id] == self.id })
-    # friends.friends.where(friends.any? { |h| h[:user_id] == self.id || h[:friend_id] == self.id })
-    # maybe use User.all.where
-  # end
+  def friend?(other_user)
+    friends.include?(other_user) && other_user.friends.include?(self)
+  end
+
+  def can_send_request_to?(other_user)
+    !friends.include?(other_user)
+  end
+
+  def sent_request_to?(other_user)
+    sent_friend_requests.any? { |request| request.receiver == other_user }
+  end
 end

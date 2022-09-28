@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :initiated_friends, through: :initiated_friendships, source: :friend
   has_many :accepted_friends, through: :accepted_friendships, source: :user
   has_many :comments, foreign_key: :commenter_id
+  has_many :likes
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true

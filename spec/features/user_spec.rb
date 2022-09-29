@@ -40,6 +40,18 @@ RSpec.describe 'User', type: :feature do
       expect(page).not_to have_button "Add Friend"
     end
   end
+
+  context 'when viewing users#index page' do
+    before do
+      login_as(user1)
+      visit users_path
+    end
+
+    it 'shows all registered users' do
+      expect(page).
+      to have_content "#{user1.username.capitalize} #{user2.username.capitalize}"
+    end
+  end
 end
 
 # To open test coverage report:

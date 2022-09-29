@@ -14,7 +14,11 @@
       <% elsif current_user.sent_request_to?(user) %>
         <%= button_to "Cancel Friend Request",
                       user_friend_request_path(current_user.id, user.id),
-                      method: :delete
+                      method: :delete,
+                      params: { friend_request: { sender_id: current_user.id,
+                                                  receiver_id: user.id
+                                                }
+                              }
         %>
       <% end %>
     </li>

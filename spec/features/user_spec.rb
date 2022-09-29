@@ -36,24 +36,17 @@ RSpec.describe 'User', type: :feature do
       visit user_path(user2.id)
     end
 
-    it 'increments sent_friend_requests for the user that clicks Add Friend' do
-      expect { click_on "Add Friend" }.
-        to change { user1.sent_friend_requests.count }.from(0).to(1)
-    end
-
-    it 'increments received_friend_requests for the user receiving the request' do
-      expect { click_on "Add Friend" }.
-        to change { user2.received_friend_requests.count }.from(0).to(1)
-    end
-
     it 'sends the request to the correct user' do
       click_on "Add Friend"
-      expect(user1.sent_friend_requests.first.receiver).to eq(user2)
+      visit user_path(user2.id)
+      expect(page).to have_button 'Cancel Friend Request'
     end
 
     it 'other user receives the request from the correct user' do
       click_on "Add Friend"
-      expect(user2.received_friend_requests.first.sender).to eq(user1)
+      login_as(user2)
+      visit user_path(user2.id)
+      expect(page).to have_content 'Friend Requests: 1'
     end
   end
 
@@ -87,27 +80,33 @@ RSpec.describe 'User', type: :feature do
     end
   
     it 'creates the friendship for the request receiver' do
-      expect(user2.friends).to include(user1)
+      visit user_friendships_path(user2.id)
+      expect(page).to have_link "#{user1.username.capitalize}"
     end
 
     it 'does not add self as friend of self' do
-      expect(user2.friends).not_to include(user2)
+      visit user_friendships_path(user2.id)
+      expect(page).not_to have_link "#{user2.username.capitalize}"
     end
 
     it 'does not add self as friend of self' do
-      expect(user1.friends).not_to include(user1)
+      visit user_friendships_path(user1.id)
+      expect(page).not_to have_link "#{user1.username.capitalize}"
     end
 
     it 'creates the friendship for the request sender' do
-      expect(user1.friends).to include(user2)
+      visit user_friendships_path(user1.id)
+      expect(page).to have_link "#{user2.username.capitalize}"
     end
 
     it 'increments friends of request receiver by 1' do
-      expect(user2.friends.count).to eq(1)
+      visit user_path(user2.id)
+      expect(page).to have_content 'Friends: 1'
     end
 
     it 'increments friends of request sender by 1' do
-      expect(user1.friends.count).to eq(1)
+      visit user_path(user1.id)
+      expect(page).to have_content 'Friends: 1'
     end
   end
 

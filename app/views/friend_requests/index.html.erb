@@ -1,14 +1,26 @@
 <h1>Friend Requests</h1>
 
-<% @friend_requests.each do |friend_request| %>
+<% @friend_requests.each do |request| %>
   <p>
-    <b>From: </b><%= link_to "#{friend_request.sender.username}",
-                   user_path(friend_request.sender.id) %>
-    <%= button_to "Accept Request", user_friendships_path(current_user.id),
-          params: { friendship: { user_id: friend_request.sender.id,
-                                  friend_id: current_user.id
-                                }
-                  }
+    <b>From: </b>
+    <%= link_to "#{request.sender.username}",
+                   user_path(request.sender.id) %>
+
+    <%= button_to "Accept",
+        user_friendships_path(current_user.id),
+        params: { friendship: { user_id: request.sender.id,
+                                friend_id: current_user.id
+                              }
+                }
+    %>
+
+    <%= button_to "Decline",
+        user_friend_request_path(current_user.id, request.sender.id),
+        method: :delete,
+        params: { friend_request: { sender_id: request.sender.id,
+                                    receiver_id: current_user.id
+                                  }
+                }
     %>
   </p>
 <% end %>

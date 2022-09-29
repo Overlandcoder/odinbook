@@ -11,7 +11,7 @@ RSpec.describe 'Friendship', type: :feature do
       click_on "Add Friend"
       login_as(user2)
       visit user_friend_requests_path(user2.id)
-      click_on "Accept Request"
+      click_on "Accept"
     end
   
     it 'creates the friendship for the request receiver' do

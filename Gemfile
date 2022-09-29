@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 # Use Devise for user sign-in
 gem 'devise'
 
+# Use Gravatar gem for profile photos
+gem 'gravtastic'
+
 # To check test coverage
 gem 'simplecov', require: false, group: :test
 

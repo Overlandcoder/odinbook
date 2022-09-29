@@ -17,6 +17,11 @@ class FriendRequestsController < ApplicationController
     end
   end
 
+  def destroy
+    @friend_request = FriendRequest.find_by(friend_request_params)
+    @friend_request.destroy
+  end
+
   private
 
   def friend_request_params

@@ -97,4 +97,20 @@ RSpec.describe 'FriendRequest', type: :feature do
       expect(page).to have_button 'Add Friend'
     end
   end
+
+  context 'when a friend request is declined' do
+    before do
+      login_as(user1)
+      visit user_path(user2.id)
+      click_on 'Add Friend'
+      login_as(user2)
+      visit user_friend_requests_path(user2.id)
+    end
+
+    it 'deletes the friend request' do
+      click_on 'Decline'
+      visit user_friend_requests_path(user2.id)
+      expect(page).not_to have_content "From: #{user1.username}"
+    end
+  end
 end

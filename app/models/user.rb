@@ -26,11 +26,11 @@ class User < ApplicationRecord
   end
 
   def friend?(other_user)
-    friends.include?(other_user) && other_user.friends.include?(self)
+    friends.include?(other_user)
   end
 
   def can_send_request_to?(other_user)
-    !friends.include?(other_user)
+    !friend?(other_user) && self != other_user && !sent_request_to?(other_user)
   end
 
   def sent_request_to?(other_user)

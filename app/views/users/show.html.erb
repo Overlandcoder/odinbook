@@ -21,12 +21,16 @@
 
 <p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
 
-<% unless @user == current_user || @user.friend?(current_user) %>
+<% if current_user.can_send_request_to?(@user) %>
   <%= button_to "Add Friend", user_friend_requests_path(@user.id),
-        params: { friend_request: {
-                                    sender_id: current_user.id,
+        params: { friend_request: { sender_id: current_user.id,
                                     receiver_id: @user.id
                                   }
                 }
+  %>
+<% elsif current_user.sent_request_to?(@user) %>
+  <%= button_to "Cancel Friend Request",
+                user_friend_request_path(current_user.id, @user.id),
+                method: :delete
   %>
 <% end %>

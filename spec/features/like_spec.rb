@@ -11,10 +11,6 @@ RSpec.describe 'Like', type: :feature do
       click_on 'Like'
     end
 
-    it 'creates a like' do
-      expect(Like.all.count).to eq(1)
-    end
-
     it 'creates a like for the post' do
       expect(post1.likes.count).to eq(1)
     end
@@ -37,18 +33,6 @@ RSpec.describe 'Like', type: :feature do
       login_as(user1)
       visit post_path(post1.id)
       click_on 'Like'
-    end
-
-    it 'deletes the like' do
-      expect { click_on 'Unlike' }.to change { Like.all.count }.from(1).to(0)
-    end
-
-    it 'deletes the like for the post' do
-      expect { click_on 'Unlike' }.to change { post1.likes.count }.from(1).to(0)
-    end
-
-    it 'deletes the like' do
-      expect { click_on 'Unlike' }.to change { user1.likes.count }.from(1).to(0)
     end
 
     it 'allows user to Like the post again' do

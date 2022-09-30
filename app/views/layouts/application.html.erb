@@ -13,6 +13,7 @@
       <%= link_to "Users", users_path %>
       <%= link_to "View Profile", user_path(current_user.id) %>
     <% end %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
@@ -22,6 +23,7 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
+    <%= render "shared/navbar" %>
     <%= yield %>
     <% flash.each do |name, message| %>
       <div class="<%= name %>"><%= message %></div>

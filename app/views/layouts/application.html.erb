@@ -33,12 +33,5 @@
     <% flash.each do |name, message| %>
       <div class="<%= name %>"><%= message %></div>
     <% end %>
-    <p class="navbar-text float-right">
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
-    <% end %>
-    </p>
   </body>
 </html>

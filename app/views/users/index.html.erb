@@ -10,7 +10,8 @@
             params: { friend_request: { sender_id: current_user.id,
                                         receiver_id: user.id
                                       }
-                    }
+                    },
+            class: "btn btn-primary"
         %>
       <% elsif current_user.sent_request_to?(user) %>
         <%= button_to "Cancel Friend Request",
@@ -19,7 +20,8 @@
             params: { friend_request: { sender_id: current_user.id,
                                         receiver_id: user.id
                                       }
-                    }
+                    },
+            class: "btn btn-secondary"
         %>
       <% end %>
     </li>

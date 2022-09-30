@@ -9,4 +9,5 @@
   <% end %>
 </ul>
 
-<%= button_to "New Post", new_user_post_path(current_user.id), method: "get" %>
+<%= button_to "New Post", new_user_post_path(current_user.id), method: "get",
+    class: "btn btn-primary" %>

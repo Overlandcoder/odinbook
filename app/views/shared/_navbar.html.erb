@@ -1,36 +1,47 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Odinbook</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users">Users</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= current_user.username.capitalize %>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Your Profile", user_path(current_user.id),
-                    class: "dropdown-item" %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "Friends", user_friendships_path(current_user.id),
-                    class: "dropdown-item" %></li>
-            <li><%= link_to "Posts", user_posts_path(current_user.id),
-                    class: "dropdown-item" %></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<% if user_signed_in? %>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Odinbook</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Create Post", new_user_post_path(current_user.id),
+                class: "nav-link link-primary" %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-primary" href="/users" style="margin-right: 5px">
+              Discover Users
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= image_tag current_user.gravatar_url(default: :mm),
+                  :class => "gravatar" %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Your Profile", user_path(current_user.id),
+                      class: "dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to "Friends", user_friendships_path(current_user.id),
+                      class: "dropdown-item" %></li>
+              <li><%= link_to "Posts", user_posts_path(current_user.id),
+                      class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        </ul>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete,
+              :class => 'btn btn-outline-dark'  %>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+<% else %>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Odinbook</a>
+    </div>
+  </nav>
+<% end %>
+

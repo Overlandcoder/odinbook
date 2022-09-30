@@ -8,7 +8,7 @@ RSpec.describe 'Comment', type: :feature do
   before do
     login_as(user1)
     visit root_path
-    click_on 'New Post'
+    click_on 'Create Post'
     fill_in 'Title', with: 'first post'
     fill_in 'Body', with: 'my text'
     click_on 'Submit Post'

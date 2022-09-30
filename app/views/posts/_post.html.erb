@@ -1,3 +1,16 @@
-By: <%= link_to "#{post.author.username}", user_path(post.author.id) %>
+<%= image_tag current_user.gravatar_url(default: :mm),
+                  :class => "gravatar", style: "border-radius: 10px" %>
+<%= link_to "#{post.author.username}", user_path(post.author.id),
+    style: "text-decoration: none" %>
 <%= "| #{post.created_time_formatted}" %>
-<br><p><%= post.body %></p>
+
+<div class="container mb-4">
+  <div class="container mt-4 mb-4">
+    <p class="fs-5"><%= post.body %></p>
+  </div>
+  <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
+</div>
+
+<% post.comments.each do |comment| %>
+  <p><%= comment.body %></p>
+<% end %>

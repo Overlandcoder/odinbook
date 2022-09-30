@@ -12,28 +12,31 @@
                 class: "nav-link link-primary" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-primary" href="/users" style="margin-right: 5px">
+            <a class="nav-link link-primary" href="/users" style="margin-right: 2px">
               Discover Users
             </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= image_tag current_user.gravatar_url(default: :mm),
-                  :class => "gravatar" %>
+                  :class => "gravatar", style: "border-radius: 10px" %>
             </a>
             <ul class="dropdown-menu">
+              <p class="px-3 pt-2 mt-n1 d-block" style="text-decoration: none">
+                Logged in as <%= current_user.username.capitalize %>
+              </p>
+              <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Your Profile", user_path(current_user.id),
                       class: "dropdown-item" %></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><%= link_to "Friends", user_friendships_path(current_user.id),
+              <li><%= link_to "Your Friends", user_friendships_path(current_user.id),
                       class: "dropdown-item" %></li>
-              <li><%= link_to "Posts", user_posts_path(current_user.id),
+              <li><%= link_to "Your Posts", user_posts_path(current_user.id),
                       class: "dropdown-item" %></li>
             </ul>
           </li>
         </ul>
           <%= button_to "Logout", destroy_user_session_path, method: :delete,
-              :class => 'btn btn-outline-dark'  %>
+              :class => 'btn btn-outline-primary'  %>
       </div>
     </div>
   </nav>

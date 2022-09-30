@@ -26,7 +26,7 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'displays the profile' do
-      expect(page).to have_content "Viewing #{user2.username.capitalize}'s Profile"
+      expect(page).to have_content "#{user2.username.capitalize}'s Profile"
     end
   end
 

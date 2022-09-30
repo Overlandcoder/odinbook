@@ -6,7 +6,7 @@ RSpec.describe 'Creating posts', type: :feature do
   before do
     login_as(user1)
     visit root_path
-    click_on 'New Post'
+    click_on 'Create Post'
     fill_in 'Title', with: "Some post"
     fill_in 'Body', with: "Some text"
     click_on 'Submit Post'

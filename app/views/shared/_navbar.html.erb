@@ -1,29 +1,35 @@
 <% if user_signed_in? %>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg sticky-top p-2 bg-light text-white shadow">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Odinbook</a>
+      <a class="navbar-brand text-info fs-4 fw-bold" href="/">Odinbook</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse ms-2" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <%= link_to "Create Post", new_user_post_path(current_user.id),
-                class: "nav-link link-primary" %>
+                class: "nav-link text-dark" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link link-primary" href="/users" style="margin-right: 2px">
+            <a class="nav-link text-dark" href="/users" style="margin-right: 2px">
               Discover Users
             </a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        </ul>
+          <%= button_to root_path, class: "btn btn-primary-outline me-2" do %>
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21" />
+            </svg>
+          <% end %>
+          <li class="nav-item dropdown mb-2 mb-lg-0 me-3 nav-link">
+            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= image_tag current_user.gravatar_url(default: :retro),
                   :class => "gravatar-nav", style: "border-radius: 10px" %>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="min-width:60px">
               <p class="px-3 pt-2 mt-n1 d-block" style="text-decoration: none">
-                Logged in as <%= current_user.username.capitalize %>
+                Logged in as <span class="fw-bold"><%= current_user.username.capitalize %></span>
               </p>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Your Profile", user_path(current_user.id),
@@ -34,9 +40,8 @@
                       class: "dropdown-item" %></li>
             </ul>
           </li>
-        </ul>
           <%= button_to "Logout", destroy_user_session_path, method: :delete,
-              :class => 'btn btn-outline-primary'  %>
+              :class => 'btn btn-outline-dark'  %>
       </div>
     </div>
   </nav>

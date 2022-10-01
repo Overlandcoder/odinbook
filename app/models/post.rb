@@ -3,7 +3,6 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  validates :title, presence: true, length: { in: 5..100 }
   validates :body, presence: true, length: { in: 1..500 }
 
   def created_time_formatted

@@ -1,10 +1,10 @@
-<%= image_tag current_user.gravatar_url(default: :retro),
-                  :class => "gravatar", style: "border-radius: 10px" %>
+<%= image_tag current_user.gravatar_url(default: :mm),
+                  :class => "gravatar-home", style: "border-radius: 50%" %>
   <%= link_to "#{post.author.username.capitalize}", user_path(post.author.id),
       style: "text-decoration: none; margin-left: 10px" %>
   <p class="text-secondary", style="display: inline-block"><%= " |  #{post.created_time_formatted}" %></p>
 
-<div class="container">
+<div class="container mt-3">
   <div class="container mt-2 mb-2">
     <p class="fs-5"><%= post.body %></p>
   </div>

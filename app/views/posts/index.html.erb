@@ -1,15 +1,17 @@
 <div class="container mt-3 pt-2">
-<h4 class="text-start text-secondary">Latest Posts</h4>
+<h5 class="text-start text-secondary">Latest Posts</h5>
 <div class="row justify-content-start mt-2">
   <div class="col-9">
     <% @posts.each do |post| %>
-      <div class="container mt-4 mb-4 p-4 border shadow rounded">
+      <div class="container mt-2 mb-4 p-4 border shadow-sm rounded">
         <%= render "post", post: post %>
       </div>
-        <hr style="opacity: 15%">
     <% end %>
   </div>
-  <div class="col-3">
-    <h6 class="text-center text-secondary">Suggested Users</h6>
+  <div class="col-3 shadow-sm">
+    <h6 class="text-secondary m-2">Suggested Users</h6>
+    <p>Coming soon</p>
+    <p>Coming soon</p>
+    <p>Coming soon</p>
   </div>
 </div>

@@ -1,16 +1,23 @@
-<%= image_tag current_user.gravatar_url(default: :mm),
+<%= image_tag current_user.gravatar_url(default: :retro),
                   :class => "gravatar", style: "border-radius: 10px" %>
-<%= link_to "#{post.author.username}", user_path(post.author.id),
-    style: "text-decoration: none" %>
-<%= "| #{post.created_time_formatted}" %>
+  <%= link_to "#{post.author.username.capitalize}", user_path(post.author.id),
+      style: "text-decoration: none; margin-left: 10px" %>
+  <p class="text-secondary", style="display: inline-block"><%= " |  #{post.created_time_formatted}" %></p>
 
-<div class="container mb-4">
-  <div class="container mt-4 mb-4">
+<div class="container">
+  <div class="container mt-2 mb-2">
     <p class="fs-5"><%= post.body %></p>
   </div>
-  <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
+  <hr style="opacity: 5%">
+  <div class="d-flex justify-content-start align-items-center">
+    <div>
+      <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
+    </div>
+    <div>
+      <%= link_to "#{pluralize(post.comments.count, "Comment")}",
+          post_comments_path(post.id),
+          style: "text-decoration: none"
+      %>
+    </div>
+  </div>
 </div>
-
-<% post.comments.each do |comment| %>
-  <p><%= comment.body %></p>
-<% end %>

@@ -1,9 +1,10 @@
 <div class="container mt-3 pt-2">
 <h5 class="text-start text-secondary">Latest Posts</h5>
-<div class="row justify-content-start mt-2">
-  <div class="col-9">
+<div class="row justify-content-between mt-2">
+  <div class="col-8">
+    <hr style="margin: 0 0 10px 0">
     <% @posts.each do |post| %>
-      <div class="container mt-2 mb-4 p-4 border shadow-sm rounded">
+      <div class="container mt-3 mb-4 p-4 border shadow-sm rounded bg-light">
         <%= render "post", post: post %>
       </div>
     <% end %>

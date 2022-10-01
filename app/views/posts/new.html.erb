@@ -1,25 +1,24 @@
-<h1>New Post</h1>
-<%= form_with(model: @post, url: user_posts_path(current_user.id)) do |form| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being created:</h2>
-      <ul>
-        <% @post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="row justify-content-center m-4 p-4">
+  <div class="col-6">
+  <%= form_with(model: @post, url: user_posts_path(current_user.id)) do |form| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being created:</h2>
+        <ul>
+          <% @post.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :body, "What's on your mind?", class: "form-label fs-3" %>
+      <%= form.text_area :body, cols: 30, rows: 10,
+                          placeholder: "Enter your text here",
+                          class: "form-control" %>
+      <%= form.submit "Create Post", class: "btn btn-primary mt-3" %>
     </div>
   <% end %>
-
-  <div class="mb-3">
-    <%= form.label :title, class: "form-label" %>
-    <%= form.text_field :title, placeholder: "Your Title Here", class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :body, class: "form-label" %>
-    <%= form.text_area :body, cols: 30, rows: 10,
-                        placeholder: "Enter your text here",
-                        class: "form-control" %>
-    <%= form.submit "Submit Post", class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>
+</div>

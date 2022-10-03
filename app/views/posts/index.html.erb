@@ -1,18 +1,22 @@
-<div class="container mt-3 pt-2">
-<h5 class="text-start text-secondary">Latest Posts</h5>
-<div class="row justify-content-between mt-2">
-  <div class="col-8">
-    <hr style="margin: 0 0 10px 0">
-    <% @posts.each do |post| %>
-      <div class="container mt-3 mb-4 p-4 border shadow-sm rounded bg-light">
-        <%= render "post", post: post %>
+<div class="bg-light" style="margin-top: -17px">
+  <div class="container pt-5 pt-2">
+    <h5 class="text-start text-secondary">Latest Posts</h5>
+    <div class="row justify-content-between mt-2">
+      <div class="col-8">
+        <hr style="margin: 0 0 10px 0">
+        <% @posts.each do |post| %>
+          <div class="container mt-3 mb-4 p-4 border shadow-sm rounded"
+               style="background-color: #fff">
+            <%= render "post", post: post %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-  <div class="col-3 shadow-sm">
-    <h6 class="text-secondary m-2">Suggested Users</h6>
-    <p>Coming soon</p>
-    <p>Coming soon</p>
-    <p>Coming soon</p>
+      <div class="col-3 border rounded shadow-sm" style="background-color: #fff">
+        <h6 class="text-secondary m-2">Suggested Users</h6>
+        <p>Coming soon</p>
+        <p>Coming soon</p>
+        <p>Coming soon</p>
+      </div>
+    </div>
   </div>
 </div>

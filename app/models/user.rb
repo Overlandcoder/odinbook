@@ -32,10 +32,15 @@ class User < ApplicationRecord
   end
 
   def can_send_request_to?(other_user)
-    !friend?(other_user) && self != other_user && !sent_request_to?(other_user)
+    !friend?(other_user) && self != other_user &&
+      !sent_request_to?(other_user) && !received_request_from?(other_user)
   end
 
   def sent_request_to?(other_user)
     sent_friend_requests.any? { |request| request.receiver == other_user }
+  end
+
+  def received_request_from?(other_user)
+    received_friend_requests.any? { |request| request.sender == other_user }
   end
 end

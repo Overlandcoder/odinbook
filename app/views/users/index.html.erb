@@ -1,46 +1,66 @@
 <div class="row justify-content-center">
   <div class="row justify-content-center m-2 p-2", style="width: 500px">
     <div class="col-12">
-    <h2 class="mb-3 text-center">Odinbook Users</h2>
-    <hr>
+      <h2 class="mb-3 text-center">Odinbook Users</h2>
+      <hr>
 
-    <ul class="mt-4", style="padding-left: 0">
-      <% @users.each do |user| %>
-        <li style="list-style: none">
-          <div class="shadow-sm bg-light p-3 mb-3 d-flex justify-content-between
-                      align-items-center rounded">
-            <div class="d-flex align-items-center">
-              <%= image_tag current_user.gravatar_url(default: :mm),
-                    :class => "gravatar-nav me-3", style: "height: 40px" %>
-              <%= link_to "#{user.username.capitalize}", user_path(user.id),
-                  style: "text-decoration: none", class: "fw-bold" %>
+      <ul class="mt-4", style="padding-left: 0">
+        <% @users.each do |user| %>
+          <li style="list-style: none">
+            <div class="shadow-sm bg-light p-3 mb-3 d-flex justify-content-between
+                        align-items-center rounded">
+              <div class="d-flex align-items-center">
+                <%= image_tag current_user.gravatar_url(default: :mm),
+                      :class => "gravatar-nav me-3", style: "height: 40px" %>
+                <%= link_to "#{user.username.capitalize}", user_path(user.id),
+                    style: "text-decoration: none", class: "fw-semibold" %>
+              </div>
+              <% if current_user.can_send_request_to?(user) %>
+                <%= button_to "Add Friend",
+                    user_friend_requests_path(user.id),
+                    params: { friend_request: { sender_id: current_user.id,
+                                                receiver_id: user.id
+                                              }
+                            },
+                    class: "btn btn-primary"
+                %>
+              <% elsif current_user.sent_request_to?(user) %>
+                <%= button_to "Cancel Friend Request",
+                    user_friend_request_path(current_user.id, user.id),
+                    method: :delete,
+                    params: { friend_request: { sender_id: current_user.id,
+                                                receiver_id: user.id
+                                              }
+                            },
+                    class: "btn btn-secondary"
+                %>
+              <% elsif current_user.friend?(user) %>
+                <div class="text-success me-1"><%= "Friend" %></div>
+              <% elsif current_user.received_request_from?(user) %>
+                <div class="d-flex">
+                  <%= button_to "Accept",
+                      user_friendships_path(current_user.id),
+                      params: { friendship: { user_id: user.id,
+                                              friend_id: current_user.id
+                                            }
+                              },
+                      class: "btn btn-success me-2"
+                  %>
+                  <%= button_to "Decline",
+                      user_friend_request_path(current_user.id, user.id),
+                      method: :delete,
+                      params: { friend_request: { sender_id: user.id,
+                                                  receiver_id: current_user.id
+                                                }
+                              },
+                      class: "btn btn-danger"
+                  %>
+                </div>
+              <% end %>
             </div>
-            <% if current_user.can_send_request_to?(user) %>
-              <%= button_to "Add Friend",
-                  user_friend_requests_path(user.id),
-                  params: { friend_request: { sender_id: current_user.id,
-                                              receiver_id: user.id
-                                            }
-                          },
-                  class: "btn btn-primary"
-              %>
-            <% elsif current_user.sent_request_to?(user) %>
-              <%= button_to "Cancel Friend Request",
-                  user_friend_request_path(current_user.id, user.id),
-                  method: :delete,
-                  params: { friend_request: { sender_id: current_user.id,
-                                              receiver_id: user.id
-                                            }
-                          },
-                  class: "btn btn-secondary"
-              %>
-            <% elsif current_user.friend?(user) %>
-              <div class="text-success me-1"><%= "Friend" %></div>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  </div>
-  </div>
+</div>

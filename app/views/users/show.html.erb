@@ -1,42 +1,59 @@
-<h2><%= @user.username.capitalize %>'s Profile</h2>
+<div class="row p-5 m-4">
+  <div class="col-3">
+    <div class="d-flex flex-column align-items-center">
+      <%= image_tag @user.gravatar_url(default: :mm),
+          class: "gravatar" %>
+      <h3 class="text-primary mt-3"><%= @user.username.capitalize %></h3>
+      <hr class="w-50">
+    </div>
+    <div>
+      <p>Posts created: <%= "#{@user.posts.count}" %></p>
+      <p>Friends: <%= "#{@user.friends.count}" %></p>
 
-<%= image_tag @user.gravatar_url(default: :retro) %>
+      <% if @user == current_user %>
+        <p>
+          <b>Friend Requests: </b>
+          <%= link_to "#{@user.received_friend_requests.count}",
+                user_friend_requests_path(@user.id) %>
+        </p>
+      <% end %>
 
-<p>
-  <b>Posts created: </b>
-  <%= link_to "#{@user.posts.count}", user_posts_path(@user.id) %>
-</p>
+      <p>Joined: <%= @user.created_time_formatted %></p>
 
-<p>
-  <b>Friends: </b>
-  <%= link_to "#{@user.friends.count}", user_friendships_path(@user.id),
-        params: { user_id: @user.id } %>
-</p>
+      <% if current_user.can_send_request_to?(@user) %>
+        <%= button_to "Add Friend", user_friend_requests_path(@user.id),
+              params: { friend_request: { sender_id: current_user.id,
+                                          receiver_id: @user.id
+                                        }
+                      }
+        %>
+      <% elsif current_user.sent_request_to?(@user) %>
+        <%= button_to "Cancel Friend Request",
+                      user_friend_request_path(current_user.id, @user.id),
+                      method: :delete,
+                      params: { friend_request: { sender_id: current_user.id,
+                                                  receiver_id: @user.id
+                                                }
+                              }
+        %>
+      <% end %>
+    </div>
+  </div>
 
-<% if @user == current_user %>
-  <p>
-    <b>Friend Requests: </b>
-    <%= link_to "#{@user.received_friend_requests.count}",
-          user_friend_requests_path(@user.id) %>
-  </p>
-<% end %>
-
-<p><b>Account Creation Date: </b><%= @user.created_time_formatted %></p>
-
-<% if current_user.can_send_request_to?(@user) %>
-  <%= button_to "Add Friend", user_friend_requests_path(@user.id),
-        params: { friend_request: { sender_id: current_user.id,
-                                    receiver_id: @user.id
-                                  }
-                }
-  %>
-<% elsif current_user.sent_request_to?(@user) %>
-  <%= button_to "Cancel Friend Request",
-                user_friend_request_path(current_user.id, @user.id),
-                method: :delete,
-                params: { friend_request: { sender_id: current_user.id,
-                                            receiver_id: @user.id
-                                          }
-                        }
-  %>
-<% end %>
+  <div class="col-9">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Friends</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</div>

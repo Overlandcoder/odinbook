@@ -10,10 +10,6 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <style>
-      .dropdown:hover .dropdown-menu{
-        display: block;
-      }
-
       .gravatar-nav {
         height: 25px;
         width: auto;
@@ -40,18 +36,6 @@
 
   <body>
     <%= render "shared/navbar" %>
-
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-
     <%= yield %>
-
-    <% flash.each do |name, message| %>
-      <div class="<%= name %>"><%= message %></div>
-    <% end %>
   </body>
 </html>

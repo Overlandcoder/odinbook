@@ -1,23 +1,51 @@
-<%= image_tag current_user.gravatar_url(default: :mm),
-                  :class => "gravatar-home" %>
+<div class="row">
+  <%= image_tag current_user.gravatar_url(default: :mm),
+                    :class => "gravatar-home" %>
+  <div class="col row ps-1">
   <%= link_to "#{post.author.username.capitalize}", user_path(post.author.id),
-      style: "text-decoration: none; margin-left: 10px" %>
-  <p class="text-secondary" style="display: inline-block"><%= " -  #{post.created_time_formatted}" %></p>
+      class: "fw-semibold",
+      style: "text-decoration: none" %>
+  <p class="text-secondary" style="display: inline-block">
+    <%= post.created_time_formatted %>
+  </p>
+  </div>
+</div>
 
-<div class="container mt-3">
-  <div class="container mt-2 mb-2">
+<div class="container">
+  <div class="container">
     <p class="fs-5"><%= post.body %></p>
   </div>
-  <hr style="opacity: 5%">
   <div class="d-flex justify-content-start align-items-center">
-    <div>
-      <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
+    <div class="ms-1 ps-2 me-2">
+      <%= link_to "#{pluralize(post.likes.count, "Like")}",
+          post_likes_path(post.id),
+          class: "text-secondary",
+          style: "text-decoration: none"
+      %>
     </div>
     <div>
       <%= link_to "#{pluralize(post.comments.count, "Comment")}",
           post_comments_path(post.id),
+          class: "text-secondary",
           style: "text-decoration: none"
       %>
     </div>
   </div>
+  <hr class="mt-2">
+  <div class="d-flex">
+    <div class="">
+      <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
+    </div>
+    <div class="">
+      <%= button_to post_comments_path(post.id),
+          class: "btn btn-outline-primary btn-sm" do
+      %>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H5.2L4 17.2V4H20V16Z" />
+        </svg>
+        Comment
+      <% end %>
+    </div>
+  </div>
 </div>
+

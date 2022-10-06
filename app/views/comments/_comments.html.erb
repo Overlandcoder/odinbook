@@ -1,0 +1,27 @@
+<div class="ms-2 me-2 ps-3 pe-3">
+  <% unless post.comments.count.zero? %>
+    <hr class="border border-2 opacity-75">
+    <p>Comments</p>
+  <% end %>
+  <div>
+    <% post.comments.each do |comment| %>
+      <div class="ps-2 pe-2">
+        <div>
+          <div>
+            <%= image_tag current_user.gravatar_url(default: :mm),
+                        :class => "gravatar-comment me-1" %>
+            <%= link_to "#{comment.commenter.username.capitalize}", user_path(post.author.id),
+              style: "text-decoration: none" %>
+            <div class="ms-3" style="display: inline-block">
+              <%= comment.body %>
+            </div>
+          </div>
+            <p class="text-secondary" style="display: inline-block">
+              <%= comment.created_time_formatted %>
+            </p>
+        </div>
+      </div>
+      <hr class="m-0 mb-3 p-0">
+    <% end %>
+  </div>
+</div>

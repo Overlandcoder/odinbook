@@ -1,0 +1,6 @@
+<% current_user.received_friend_requests.each do |request| %>
+  <li>
+    <%= link_to "#{request.sender.username.capitalize}",
+        user_path(request.sender.id), class: "dropdown-item" %>
+  </li>
+<% end %>

@@ -4,7 +4,7 @@
     <%= form.hidden_field :commenter_id, value: current_user.id %>
     <%= form.label :body, "Comment:", class: "mb-2" %>
     <%= form.text_area :body, rows: 4, placeholder: "Add a new comment...",
-        class: "form-control bg-light" %>
+        class: "form-control bg-light", required: "required" %>
   </div>
   <div class="modal-footer pb-0">
     <button type="button" class="btn btn-secondary ms-3" data-bs-dismiss="modal">Close</button>

@@ -12,25 +12,26 @@
 </div>
 
 <div class="container">
-  <div class="container">
+  <div class="container mb-4">
     <p class="fs-5"><%= post.body %></p>
   </div>
-  <hr>
   <div class="d-flex justify-content-between align-items-center">
     <div class="d-flex">
       <div>
         <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
       </div>
 
-      <button type="button" class="btn btn-outline-primary btn-sm ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+      <button type="button" class="btn btn-outline-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H5.2L4 17.2V4H20V16Z" />
         </svg>
         Comment
       </button>
+      <%= button_to "View Post (temp)", post_path(post.id), method: "get",
+          class: "btn btn-primary btn-sm ms-3" %>
     </div>
 
-    <div class="d-flex justify-content-start align-items-center">
+    <div class="d-flex me-3 justify-content-start align-items-center">
       <div class="me-2">
         <%= link_to "#{pluralize(post.likes.count, "Like")}",
             post_likes_path(post.id),

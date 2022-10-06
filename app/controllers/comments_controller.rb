@@ -14,14 +14,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
-
-    if @comment.save!
-      redirect_to post_path(@post)
-      flash[:success] = "Comment posted."
-    else
-      render :new, status: :unprocessable_entity
-      flash.now[:error] = "Comment couldn't be posted."
-    end
+    @comment.save!
   end
 
   private

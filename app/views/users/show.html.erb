@@ -1,5 +1,5 @@
 <div class="row p-5 m-4 justify-content-evenly">
-  <div class="col-2 border rounded p-4 bg-light bg-opacity-50 shadow-sm">
+  <div class="col-2 border rounded p-4 shadow-sm">
     <div class="d-flex flex-column w-75">
       <%= image_tag @user.gravatar_url(default: :mm),
           class: "gravatar border w-100" %>
@@ -8,7 +8,7 @@
 
     <% if @user == current_user %>
       <%= button_to "Edit profile", edit_user_registration_path, method: "get",
-        class: "btn bg-secondary bg-opacity-10 w-100 mb-3" %>
+        class: "btn bg-secondary bg-opacity-10 w-100 mb-4" %>
     <% end %>
 
     <p><b><%= "#{@user.friends.count} " %></b><%= "friend".pluralize(@user.friends.count) %></p>
@@ -33,6 +33,34 @@
                   },
           class: "btn btn-secondary w-100"
       %>
+    <% elsif @user.friend?(current_user) %>
+      <%= button_to "Remove Friend",
+          user_friendship_path(@user.id, current_user.id),
+          method: :delete,
+          params: { friendship: { user_id: current_user.id, friend_id: @user.id }},
+          class: "btn btn-danger w-100" %>
+    <% elsif current_user.received_request_from?(@user) %>
+      <hr>
+      <p class="text-center">
+        <%= "#{@user.username.capitalize} has added you as a friend." %>
+      </p>
+      <div class="d-flex">
+        <%= button_to "Accept", user_friendships_path(current_user.id),
+            params: { friendship: { user_id: @user.id,
+                                    friend_id: current_user.id
+                                  }
+                    },
+            class: "btn btn-success me-2"
+        %>
+        <%= button_to "Decline", user_friend_request_path(current_user.id, @user.id),
+            method: :delete,
+            params: { friend_request: { sender_id: @user.id,
+                                        receiver_id: current_user.id
+                                      }
+                    },
+            class: "btn btn-danger"
+        %>
+      </div>
     <% end %>
   </div>
   <div class="col-9">

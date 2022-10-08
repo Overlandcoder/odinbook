@@ -7,14 +7,13 @@ RSpec.describe 'Creating posts', type: :feature do
     login_as(user1)
     visit root_path
     click_on 'Create Post'
-    fill_in 'Title', with: "Some post"
-    fill_in 'Body', with: "Some text"
-    click_on 'Submit Post'
+    fill_in "What's on your mind?", with: "Some text"
+    click_on 'Post'
   end
 
   context 'when creating a valid post' do
     it 'creates the post' do
-      expect(page).to have_content "New post created."
+      expect(page).to have_content "Some text"
     end
 
     it 'increases post count of the user' do
@@ -24,7 +23,7 @@ RSpec.describe 'Creating posts', type: :feature do
 
   context 'when viewing a post' do
     it 'contains the author info' do
-      expect(page).to have_content "By: #{user1.username}"
+      expect(page).to have_link "#{user1.username.capitalize}"
     end
   end
 end

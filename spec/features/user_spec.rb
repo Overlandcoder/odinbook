@@ -7,7 +7,7 @@ RSpec.describe 'User', type: :feature do
   context 'when not logged in' do
     it 'requires login to continue to app' do
       visit root_path
-      expect(page).to have_content "You need to sign in or sign up before continuing."
+      expect(page).to have_content "A place where ideas grow."
     end
   end
 
@@ -15,7 +15,7 @@ RSpec.describe 'User', type: :feature do
     it 'logs the user in' do
       login_as(user1)
       visit root_path
-      expect(page).to have_content "Logged in as #{user1.email}"
+      expect(page).to have_content "Logged in as #{user1.username.capitalize}"
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'displays the profile' do
-      expect(page).to have_content "#{user2.username.capitalize}'s Profile"
+      expect(page).to have_content "Joined: "
     end
   end
 
@@ -39,17 +39,9 @@ RSpec.describe 'User', type: :feature do
     it 'does not show Add Friend button' do
       expect(page).not_to have_button "Add Friend"
     end
-  end
 
-  context 'when viewing users#index page' do
-    before do
-      login_as(user1)
-      visit users_path
-    end
-
-    it 'shows all registered users' do
-      expect(page).
-      to have_content "#{user1.username.capitalize} #{user2.username.capitalize}"
+    it 'shows the Edit Profile button' do
+      expect(page).to have_button "Edit profile"
     end
   end
 end

@@ -36,12 +36,12 @@ RSpec.describe 'Friendship', type: :feature do
 
     it 'increments friends of request receiver by 1' do
       visit user_path(user2.id)
-      expect(page).to have_content 'Friends: 1'
+      expect(page).to have_content '1 friend'
     end
 
     it 'increments friends of request sender by 1' do
       visit user_path(user1.id)
-      expect(page).to have_content 'Friends: 1'
+      expect(page).to have_content '1 friend'
     end
   end
 end

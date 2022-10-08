@@ -112,9 +112,6 @@ GEM
     gravtastic (3.2.6)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    importmap-rails (1.1.5)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
@@ -277,7 +274,6 @@ DEPENDENCIES
   factory_bot_rails
   faker
   gravtastic
-  importmap-rails
   jbuilder
   jsbundling-rails
   pg (~> 1.1)

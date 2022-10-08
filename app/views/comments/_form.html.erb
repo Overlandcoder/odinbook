@@ -1,4 +1,6 @@
 <% post ||= @post %>
+
+<% p post %>
 <%= form_for :comment, url: post_comments_path(post.id) do |form| %>
   <div class="mb-4">
     <%= form.hidden_field :commenter_id, value: current_user.id %>

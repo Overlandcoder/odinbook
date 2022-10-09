@@ -50,6 +50,9 @@
                     class: "dropdown-item" %></li>
             <li><%= link_to "Your Posts", user_posts_path(current_user.id),
                     class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "Settings", edit_user_registration_path,
+                    class: "dropdown-item" %></li>
           </ul>
         </li>
 

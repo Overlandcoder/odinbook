@@ -1,0 +1,14 @@
+<% user.posts.each do |post| %>
+  <div class="m-3 bg-light p-3 border rounded shadow-sm">
+      <%= post.body %>
+      <div class="d-flex mt-2 text-secondary align-items-center">
+        <div class="me-3">
+          <%= post.created_time_formatted %>
+        </div>
+        <div>
+          <%= button_to "View Post", post_path(post), method: "get",
+              class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<%= form_with model: @profile do |form| %>
+  <div class="container w-25 mt-4">
+      <h2 class="mb-3">Personal Info</h2>
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control mb-3" %>
+      <%= form.label :gender, class: "form-label" %>
+      <%= form.text_field :gender, class: "form-control mb-3" %>
+      <%= form.label :age, class: "form-label" %>
+      <%= form.text_field :age, class: "form-control mb-3" %>
+      <%= form.label :location, class: "form-label" %>
+      <%= form.text_field :location, class: "form-control mb-3" %>
+      <%= form.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 <div class="row m-2 p-5 justify-content-center">
-  <div class="col-2 me-5 border rounded p-4 shadow-sm">
+  <div class="col-2 h-100 me-5 border rounded p-4 shadow-sm">
     <div class="d-flex flex-column w-75">
       <%= image_tag @user.gravatar_url(default: :mm),
           class: "gravatar border w-100" %>
@@ -8,13 +8,32 @@
     <hr class="mt-0">
 
     <% if @user == current_user %>
-      <%= button_to "Edit profile", edit_user_registration_path, method: "get",
-        class: "btn bg-secondary bg-opacity-10 w-100 mb-4" %>
+      <% if current_user.profile %>
+        <%= button_to "Edit profile", edit_profile_path(current_user), method: "get",
+          class: "btn bg-warning bg-opacity-10 w-100 mb-4" %>
+      <% elsif @user.profile.nil? %>
+        <%= button_to "Add profile info", new_profile_path(@user),
+            method: "get", class: "btn btn-success w-100 mb-3" %>
+      <% end %>
     <% end %>
 
-    <p><b><%= "#{@user.friends.count} " %></b><%= "friend".pluralize(@user.friends.count) %></p>
-    <p><b><%= "#{@user.posts.count} " %></b><%= "post".pluralize(@user.posts.count) %></p>
-    <p>Joined: <%= @user.created_time_formatted %></p>
+    <div class="d-flex">
+      <div class="col-5">
+        <p><b>Name</b></p>
+        <p><b>Gender</b></p>
+        <p><b>Age</b></p>
+        <p><b>Location</b></p>
+        <p><b>Joined</b></p>
+      </div>
+      <div class="col-7">
+        <% if @user.profile %>
+          <%= render "profiles/info", user: @user %>
+        <% else %>
+          <%= render "profiles/empty" %>
+        <% end %>
+        <p><%= @user.created_time_formatted %></p>
+      </div>
+    </div>
 
     <% if current_user.can_send_request_to?(@user) %>
       <%= button_to "Add Friend", user_friend_requests_path(@user.id),
@@ -71,12 +90,6 @@
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Friends</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">

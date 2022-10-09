@@ -21,40 +21,32 @@
         <%= render "likes/likes", post: post, like: post.find_like(current_user) %>
       </div>
 
-      <button type="button" class="btn btn-outline-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal<%= post.id %>" data-bs-whatever="@mdo">
+      <button type="button" class="btn btn-outline-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#commentModal<%= post.id %>" data-bs-whatever="@mdo">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H5.2L4 17.2V4H20V16Z" />
         </svg>
         Comment
       </button>
-      <%= button_to "View Post (temp)", post_path(post.id), method: "get",
-          class: "btn btn-primary btn-sm ms-3" %>
     </div>
 
     <div class="d-flex me-3 justify-content-start align-items-center">
       <div class="me-2">
-        <%= link_to "#{pluralize(post.likes.count, "Like")}",
-            post_likes_path(post.id),
-            class: "text-secondary",
-            style: "text-decoration: none"
-        %>
-      </div>
-      <div>
-        <%= link_to "#{pluralize(post.comments.count, "Comment")}",
-            post_comments_path(post.id),
-            class: "text-secondary",
-            style: "text-decoration: none"
-        %>
+        <a class="text-secondary me-1" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseLike<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%= pluralize(post.likes.count, "Like") %>
+        </a>
+        <a class="text-secondary" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseComment<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%= pluralize(post.comments.count, "Comment") %>
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal<%= post.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="commentModal<%= post.id %>" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New comment</h1>
+        <h1 class="modal-title fs-5" id="commentModalLabel">New comment</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -63,5 +55,31 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="collapse" id="collapseComment<%= post.id %>">
+  <%= render "comments/comments", post: post%>
+</div>
+
+<div class="collapse ms-2 me-2 ps-3 pe-3" id="collapseLike<%= post.id %>">
+  <% unless post.likes.count.zero? %>
+    <hr class="border border-2 opacity-75">
+    <p>Liked by</p>
+  <% end %>
+
+  <div>
+    <% post.likes.each do |like| %>
+      <div class="ps-2 pe-2">
+        <div>
+          <div class="mb-2">
+            <%= image_tag current_user.gravatar_url(default: :mm),
+                        :class => "gravatar-comment me-1" %>
+            <%= link_to "#{like.user.username.capitalize}", user_path(post.author.id),
+              style: "text-decoration: none" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

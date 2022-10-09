@@ -1,0 +1,10 @@
+<div class="m-3">
+  <% user.friends.each do |friend| %>
+    <div class="p-2 d-flex align-items-center">
+      <%= image_tag @user.gravatar_url(default: :mm),
+          class: "gravatar-comment border me-2" %>
+      <%= link_to "#{friend.username.capitalize}", user_path(friend),
+          style: "text-decoration: none" %>
+    </div>
+  <% end %>
+</div>

@@ -6,7 +6,7 @@
           style: "max-width: 300px" %>
     </div>
 
-    <div class="ms-4 shadow p-5">
+    <div class="ms-4 shadow p-5 pt-4 pb-4">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field mb-3">
           <%= f.label :username, class: "form-label" %><br />
@@ -46,9 +46,11 @@
         <span class="ms-4 me-4">or</span>
         <hr class="w-50">
       </div>
+      <div class="d-flex justify-content-center">
         <%= button_to "Sign in with Facebook",
             user_facebook_omniauth_authorize_path, :data => {turbo: "false"},
-            class: "btn btn-secondary w-100" %>
+            class: "btn text-primary m-0 p-0" %>
+      </div>
     </div>
   </div>
 </div>

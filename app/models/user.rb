@@ -22,6 +22,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :username, uniqueness: true
 
+  after_create :send_welcome_email
+
   def created_time_formatted
     created_at.strftime("%b %-d, %Y")
   end
@@ -57,5 +59,9 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_later
   end
 end

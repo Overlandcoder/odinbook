@@ -26,7 +26,7 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'displays the profile' do
-      expect(page).to have_content "Joined: "
+      expect(page).to have_content "Joined"
     end
   end
 
@@ -40,8 +40,8 @@ RSpec.describe 'User', type: :feature do
       expect(page).not_to have_button "Add Friend"
     end
 
-    it 'shows the Edit Profile button' do
-      expect(page).to have_button "Edit profile"
+    it 'shows the Add profile info button when no profile created' do
+      expect(page).to have_button "Add profile info"
     end
   end
 end

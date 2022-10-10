@@ -311,4 +311,7 @@ Devise.setup do |config|
 
   # To fix this error: undefined method `user_url'
   config.navigational_formats = ['*/*', :html, :turbo_stream]
+
+  # For Facebook login
+  config.omniauth :facebook, "832034401480525", "56bfa2878fccd42823f0688e549661d0"
 end

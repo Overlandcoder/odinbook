@@ -30,13 +30,6 @@ RSpec.describe 'FriendRequest', type: :feature do
       visit user_path(user2.id)
       expect(page).to have_button 'Cancel Friend Request'
     end
-
-    it 'other user receives the request from the correct user' do
-      click_on 'Add Friend'
-      login_as(user2)
-      visit user_path(user2.id)
-      expect(page).to have_content 'Friend Requests: 1'
-    end
   end
 
   context 'when a user has a friend request' do
@@ -48,13 +41,9 @@ RSpec.describe 'FriendRequest', type: :feature do
       visit user_path(user2.id)
     end
 
-    it 'displays the correct amount of friend requests' do
-      expect(page).to have_content 'Friend Requests: 1'
-    end
-
     it 'shows the correct friend request' do
       visit user_friend_requests_path(user2.id)
-      expect(page).to have_content "From: #{user1.username}"
+      expect(page).to have_content "#{user1.username.capitalize}"
     end
   end
 

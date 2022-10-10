@@ -4,3 +4,8 @@
         user_path(request.sender.id), class: "dropdown-item" %>
   </li>
 <% end %>
+
+<hr class="dropdown-divider">
+
+<%= link_to "View all", user_friend_requests_path(current_user),
+    class: "dropdown-item" %>

@@ -5,9 +5,10 @@
   </li>
 <% end %>
 
-<%= "None" if current_user.received_friend_requests.count.zero? %>
-
-<hr class="dropdown-divider">
-
-<%= link_to "View all", user_friend_requests_path(current_user),
-    class: "dropdown-item" %>
+<% if current_user.received_friend_requests.count.zero? %>
+  <li class="dropdown-item"><%= "None" %></li>
+<% else %>
+  <hr class="dropdown-divider">
+  <%= link_to "View all", user_friend_requests_path(current_user),
+      class: "dropdown-item" %>
+<% end %>

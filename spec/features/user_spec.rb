@@ -15,7 +15,7 @@ RSpec.describe 'User', type: :feature do
     it 'logs the user in' do
       login_as(user1)
       visit root_path
-      expect(page).to have_content "Logged in as #{user1.username.capitalize}"
+      expect(page).to have_content "Welcome, #{user1.username.titleize}!"
     end
   end
 

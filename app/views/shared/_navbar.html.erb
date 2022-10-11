@@ -41,7 +41,7 @@
           </a>
           <ul class="dropdown-menu" style="min-width:60px">
             <p class="px-3 pt-2 mt-n1 d-block mb-0" style="text-decoration: none">
-              Welcome, <span class="fw-bold"><%= current_user.username %></span>!
+              Welcome, <span class="fw-bold"><%= current_user.username.titleize %></span>!
             </p>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to "Your Profile", user_path(current_user.id),
@@ -64,4 +64,3 @@
     </div>
   </nav>
 <% end %>
-

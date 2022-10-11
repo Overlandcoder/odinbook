@@ -16,7 +16,8 @@
         <%= form.label :body, "What's on your mind?", class: "form-label fs-3" %>
         <%= form.text_area :body, cols: 30, rows: 10,
                             placeholder: "Enter your text here",
-                            class: "form-control bg-light shadow-sm" %>
+                            class: "form-control bg-light shadow-sm",
+                            autofocus: true %>
         <%= form.submit "Post", class: "btn btn-primary mt-4" %>
       </div>
     <% end %>

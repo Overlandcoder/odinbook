@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def random_strangers
-    5.times.map { User.all.sample }.uniq
+    20.times.map { User.all.sample }.uniq.reject { |user| !user.can_send_request_to?(self) }
   end
 
   def self.from_omniauth(auth)

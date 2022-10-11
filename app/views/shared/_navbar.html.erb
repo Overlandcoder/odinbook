@@ -52,7 +52,7 @@
         </li>
 
         <%= button_to "Logout", destroy_user_session_path, method: :delete,
-            class: 'btn btn-outline-light'
+            class: 'btn btn-outline-light', data: { turbo: false }
         %>
       </div>
     </div>

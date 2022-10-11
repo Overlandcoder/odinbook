@@ -49,6 +49,10 @@ class User < ApplicationRecord
     received_friend_requests.any? { |request| request.sender == other_user }
   end
 
+  def random_strangers
+    5.times.map { User.all.sample }.uniq
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

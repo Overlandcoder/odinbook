@@ -8,16 +8,16 @@ class User < ApplicationRecord
   
   devise :omniauthable, omniauth_providers: %i[facebook]
 
-  has_many :posts, foreign_key: :author_id
-  has_many :initiated_friendships, foreign_key: :user_id, class_name: "Friendship"
-  has_many :accepted_friendships, foreign_key: :friend_id, class_name: "Friendship"
-  has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest"
-  has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest"
-  has_many :initiated_friends, through: :initiated_friendships, source: :friend
-  has_many :accepted_friends, through: :accepted_friendships, source: :user
-  has_many :comments, foreign_key: :commenter_id
-  has_many :likes
-  has_one :profile
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+  has_many :initiated_friendships, foreign_key: :user_id, class_name: "Friendship", dependent: :destroy
+  has_many :accepted_friendships, foreign_key: :friend_id, class_name: "Friendship", dependent: :destroy
+  has_many :received_friend_requests, foreign_key: :receiver_id, class_name: "FriendRequest", dependent: :destroy
+  has_many :sent_friend_requests, foreign_key: :sender_id, class_name: "FriendRequest", dependent: :destroy
+  has_many :initiated_friends, through: :initiated_friendships, source: :friend, dependent: :destroy
+  has_many :accepted_friends, through: :accepted_friendships, source: :user, dependent: :destroy
+  has_many :comments, foreign_key: :commenter_id, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true

@@ -10,7 +10,7 @@
           <div>
             <%= image_tag current_user.gravatar_url(default: :mm),
                         :class => "gravatar-comment me-1" %>
-            <%= link_to "#{comment.commenter.username.capitalize}", user_path(post.author.id),
+            <%= link_to "#{comment.commenter.username.capitalize}", user_path(comment.commenter.id),
               style: "text-decoration: none" %>
             <div style="display: inline-block">
               <%= comment.body %>

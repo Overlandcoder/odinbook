@@ -6,12 +6,23 @@ class LikesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @like = @post.likes.create(like_params)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @like = @post.likes.find_by(like_params)
-    @like.destroy
+
+    if @like.destroy
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    end
   end
 
   private

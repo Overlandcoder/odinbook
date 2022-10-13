@@ -4,7 +4,7 @@
     <p>Comments</p>
   <% end %>
   <div>
-    <% post.comments.each do |comment| %>
+    <% post.comments.ordered.each do |comment| %>
       <div class="ps-2 pe-2">
         <div>
           <div>

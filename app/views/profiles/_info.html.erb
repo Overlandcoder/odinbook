@@ -1,4 +1,25 @@
-<p><%= user.profile.display_name %></p>
-<p><%= user.profile.display_gender %></p>
-<p><%= user.profile.display_age %></p>
-<p><%= user.profile.display_location %></p>
+<div class="d-flex justify-content-between mb-3" style="word-wrap:break-word; gap: 10px">
+  <b>Name</b>
+  <%= user.profile.display_name %>
+</div>
+
+<div class="d-flex justify-content-between mb-3" style="word-wrap:break-word; gap: 10px">
+  <b>Gender</b>
+  <%= user.profile.display_gender %>
+</div>
+
+<div class="d-flex justify-content-between mb-3" style="word-wrap:break-word; gap: 10px">
+  <b>Age</b>
+  <%= user.profile.display_age %>
+</div>
+
+<div class="d-flex justify-content-between mb-3" style="word-wrap:break-word; gap: 10px">
+  <b>Location</b>
+  <%= user.profile.display_location %>
+</div>
+
+<div class="d-flex justify-content-between mb-3" style="word-wrap:break-word; gap: 10px">
+  <b>Joined</b>
+  <%= @user.created_time_formatted %>
+</div>
+

@@ -21,22 +21,12 @@
       <% end %>
     <% end %>
 
-    <div class="d-flex">
-      <div class="col-5">
-        <p><b>Name</b></p>
-        <p><b>Gender</b></p>
-        <p><b>Age</b></p>
-        <p><b>Location</b></p>
-        <p><b>Joined</b></p>
-      </div>
-      <div class="col-7">
-        <% if @user.profile %>
-          <%= render "profiles/info", user: @user %>
-        <% else %>
-          <%= render "profiles/empty" %>
-        <% end %>
-        <p><%= @user.created_time_formatted %></p>
-      </div>
+    <div class="d-flex flex-column">
+      <% if @user.profile %>
+        <%= render "profiles/info", user: @user %>
+      <% else %>
+        <%= render "profiles/empty" %>
+      <% end %>
     </div>
 
     <% if current_user.can_send_request_to?(@user) %>

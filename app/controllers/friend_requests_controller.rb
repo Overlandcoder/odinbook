@@ -9,12 +9,17 @@ class FriendRequestsController < ApplicationController
 
   def create
     @friend_request = current_user.sent_friend_requests.build(friend_request_params)
-    @friend_request.save
+    return unless @friend_request.save
+
+    flash[:notice] = "Friend request sent."
+    redirect_to request.referrer
   end
 
   def destroy
     @friend_request = FriendRequest.find_by(friend_request_params)
-    @friend_request.destroy
+    return unless @friend_request.destroy
+
+    redirect_to request.referrer
   end
 
   private

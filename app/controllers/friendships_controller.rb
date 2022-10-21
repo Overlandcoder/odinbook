@@ -10,16 +10,10 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.accepted_friendships.build(friendship_params)
+    return unless @friendship.save
 
-    if @friendship.save!
-      FriendRequestDestroyer.call(friendship_params)
-
-      respond_to do |format|
-        format.js {render inline: "location.reload();" }
-      end
-    else
-      render :new, status: :unprocessable_entity
-    end
+    FriendRequestDestroyer.call(friendship_params)
+    redirect_to request.referrer
   end
 
   def destroy
@@ -27,7 +21,9 @@ class FriendshipsController < ApplicationController
                                      friend_id: friendship_params[:friend_id]) ||
                   Friendship.find_by(user_id: friendship_params[:friend_id],
                                      friend_id: friendship_params[:user_id])
-    @friendship.destroy
+    return unless @friendship.destroy
+
+    redirect_to request.referrer
   end
 
   private

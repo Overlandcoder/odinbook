@@ -13,10 +13,12 @@ class FriendshipsController < ApplicationController
 
     if @friendship.save!
       FriendRequestDestroyer.call(friendship_params)
-      # flash[:success]
+
+      respond_to do |format|
+        format.js {render inline: "location.reload();" }
+      end
     else
       render :new, status: :unprocessable_entity
-      # flash
     end
   end
 

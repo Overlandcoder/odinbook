@@ -11,7 +11,6 @@ class FriendRequestsController < ApplicationController
     @friend_request = current_user.sent_friend_requests.build(friend_request_params)
     return unless @friend_request.save
 
-    flash[:notice] = "Friend request sent."
     redirect_to request.referrer
   end
 

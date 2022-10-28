@@ -101,7 +101,7 @@
             <%= image_tag current_user.gravatar_url(default: :mm),
                           :class => "gravatar-comment me-1" %>
             <%= link_to "#{like.user.username.capitalize}",
-                        user_path(post.author.id),
+                        user_path(like.user),
                         style: "text-decoration: none" %>
           </div>
         </div>

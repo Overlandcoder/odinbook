@@ -88,10 +88,22 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-        <%= render "posts/user_posts", user: @user%>
+        <% if @user.posts.count.zero? %>
+          <div class="p-3 text-secondary">
+            <%= "#{@user.username.capitalize} has not posted yet"%>
+          </div>
+        <% else %>
+          <%= render "posts/user_posts", user: @user%>
+        <% end %>
       </div>
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-        <%= render "friendships/friends", user: @user %>
+        <% if @user.friends.count.zero? %>
+          <div class="p-3 text-secondary">
+            <%= "#{@user.username.capitalize} has not made any friends yet"%>
+          </div>
+        <% else %>
+          <%= render "friendships/friends", user: @user %>
+        <% end %>
       </div>
       <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
       <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>

@@ -13,25 +13,25 @@ RSpec.describe 'Friendship', type: :feature do
       visit user_friend_requests_path(user2.id)
       click_on "Accept"
     end
-  
+
     it 'creates the friendship for the request receiver' do
       visit user_friendships_path(user2.id)
-      expect(page).to have_link "#{user1.username.capitalize}"
+      expect(page).to have_link user1.username.capitalize
     end
 
     it 'does not add self as friend of self' do
       visit user_friendships_path(user2.id)
-      expect(page).not_to have_link "#{user2.username.capitalize}"
+      expect(page).not_to have_link user2.username.capitalize
     end
 
     it 'does not add self as friend of self' do
       visit user_friendships_path(user1.id)
-      expect(page).not_to have_link "#{user1.username.capitalize}"
+      expect(page).not_to have_link user1.username.capitalize
     end
 
     it 'creates the friendship for the request sender' do
       visit user_friendships_path(user1.id)
-      expect(page).to have_link "#{user2.username.capitalize}"
+      expect(page).to have_link user2.username.capitalize
     end
 
     it 'increments friends of request receiver by 1' do

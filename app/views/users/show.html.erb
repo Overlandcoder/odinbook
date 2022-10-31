@@ -90,7 +90,7 @@
       <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
         <% if @user.posts.count.zero? %>
           <div class="p-3 text-secondary">
-            <%= "#{@user.username.capitalize} has not posted yet"%>
+            <%= "No posts"%>
           </div>
         <% else %>
           <%= render "posts/user_posts", user: @user%>
@@ -99,7 +99,7 @@
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
         <% if @user.friends.count.zero? %>
           <div class="p-3 text-secondary">
-            <%= "#{@user.username.capitalize} has not made any friends yet"%>
+            <%= "No friends"%>
           </div>
         <% else %>
           <%= render "friendships/friends", user: @user %>

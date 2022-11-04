@@ -2,7 +2,7 @@
 
 A Ruby on Rails social media app with the core functionality of Facebook.
 
-View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/).
+View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). You may log in by entering the username `user` and password `password`.
 > **Note:** Due to being on Heroku's free plan, initial load time may be longer than expected.
 
 ![alt text](homepage.png?raw=true "screenshot of Odinbook home page")
@@ -21,6 +21,7 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/).
 - View notifications of received friend requests
 - Send welcome email to new users when they sign up (only available in local version)
 - Turbo Frames used for liking/unliking posts to improve user experience
+- Tested with RSpec and Capybara (96% code coverage)
 
 ## Known Bugs
 - No error message is displayed by Devise if wrong password is entered while logging in (may be due to an incompatibility with Rails 7 and Devise)

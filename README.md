@@ -5,7 +5,7 @@ A Ruby on Rails social media app with the core functionality of Facebook.
 View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). You may log in by entering the username `user` and password `password`.
 > **Note:** Due to being on Heroku's free plan, initial load time may be longer than expected.
 
-![alt text](homepage.png?raw=true "screenshot of Odinbook home page")
+![alt text](login_page.png?raw=true "screenshot of Odinbook home page")
 
 ## Features
 - Log in via Facebook (handled via OmniAuth gem) or create an account (via Devise gem)
@@ -35,5 +35,6 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). Yo
 - Allow comments to be deleted
 - Allow comments to be liked via polymorphic associations
 - Require confirmation before letting a user remove a friend
+- Improve layout of comments (very lengthy comments are displayed in an undesired manner)
 
 ## Reflections

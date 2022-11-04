@@ -24,6 +24,7 @@ This is the [final assignment ](https://www.theodinproject.com/lessons/ruby-on-r
 - View notifications of received friend requests
 - Send welcome email to new users when they sign up (only available in local version)
 - Turbo Frames used for liking/unliking posts to improve user experience
+- Beautifully designed with Bootstrap
 - Tested with RSpec and Capybara (96% code coverage)
 
 ## How to Use
@@ -59,12 +60,18 @@ Finally, visit http://localhost:3000/ to view the application.
 - Allow comments to be liked via polymorphic associations
 - Require confirmation before letting a user remove a friend
 - Improve layout of comments (very lengthy comments are displayed in an undesired manner)
+- Responsive design
 
 ## Reflections
 I knew this would be a very fun project right from the start, and it definitely was. Initially, I made a lot of rapid progress. A lot of the core functionality was implemented in less than a week. However, countless tweaks and adjustments to different aspects of the app ended up taking a considerable amount of time.
 
 The two most difficult implementations:
-- Implementing `Friendships`
-- Figuring out how to use Turbo Frames for liking/unliking posts. The goal was to give this part of the app a single-page application feel. If a user clicks Like, update the likes count and swap the Like button with an Unlike button, and vice versa
+- `Friendships`
+- Figuring out how to use Turbo Frames for liking/unliking posts. The goal was to give this part of the app a single-page application feel. If a user clicks Like, update the likes count and swap the Like button with an Unlike button, and vice versa. After lots of research, following multiple guides, referencing docs, and guidance from the helpful folks in The Odin Project's Discord server, I was able to achieve the desired result
 
-Many bugs were encountered and eliminated during the course of building this app.
+The layout/design of the app took much longer than I expected, mainly because of the countless tweaks and improvements that were continually made, and because it was my first time using a CSS framework (Bootstrap).
+
+Overall, I gained an incredible amount of knowledge and experience, and this journey skyrocketed the confidence that I have in my ability to build beautiful and complex Ruby on Rails apps.
+
+## Acknowledgements
+I'd like to thank the generous people in the `#rails-help` channel of The Odin Project's Discord that took the time to answer any questions I had and guided me through difficulties. Specifically, I wish to thank [Josh](https://github.com/JoshDevHub) and [Simmon](https://github.com/crespire) for helping me resolve two perplexing errors in the app's asset pipeline and comment modals.

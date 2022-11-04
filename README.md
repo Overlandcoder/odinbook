@@ -15,10 +15,24 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/).
   - Like posts
 - Friend requests: send, cancel, accept, or decline friend requests
 - Users can have a profile photo (must be uploaded separately via Gravatar)
-- User profile pages: 
-  - Show posts and friends of a user
-  - Show personal info (name, age, gender and location) if a user has added that info
+- View profile page of any user, which: 
+  - Shows posts and friends of that user
+  - Shows personal info (name, age, gender and location) if the user has added that info
+- View notifications of received friend requests
+- Send welcome email to new users when they sign up (only available in local version)
+- Turbo Frames used for liking/unliking posts to improve user experience
 
+## Known Bugs
+- No error message is displayed by Devise if wrong password is entered while logging in (may be due to an incompatibility with Rails 7 and Devise)
+- Profile photos are only displayed on a user's profile page
+- Refactor `random_strangers` method in `app/models/user.rb`
 
 ## Possible Improvements:
 - Allow users to change their username
+- Use Turbo Frames for other parts of the app to improve user experience
+- Allow posts to be edited/deleted
+- Allow comments to be deleted
+- Allow comments to be liked via polymorphic associations
+- Require confirmation before letting a user remove a friend
+
+## Reflections

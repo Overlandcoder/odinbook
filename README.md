@@ -2,8 +2,7 @@
 
 A Ruby on Rails social media app with the core functionality of Facebook.
 
-View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). You may log in by entering the username `user` and password `password`.
-> **Note:** Due to being on Heroku's free plan, initial load time may be longer than expected.
+View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). You may log in by entering the username `user` and password `password`. (**Note:** Due to being on Heroku's free plan, initial load time may be longer than expected.)
 
 ![alt text](login_page.png?raw=true "screenshot of Odinbook home page")
 
@@ -24,8 +23,10 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). Yo
 - Tested with RSpec and Capybara (96% code coverage)
 
 ## How to Use
-[Click here to view a live version on Heroku.](https://peaceful-gorge-29362.herokuapp.com/) (Note: Due to being on Heroku's free plan, initial load time may be longer than expected.)
+### Live Version
+[Click here to view a live version on Heroku.](https://peaceful-gorge-29362.herokuapp.com/) (**Note:** Due to being on Heroku's free plan, initial load time may be longer than expected.)
 
+### Local Version
 To run locally, you must have the following prerequisites:
 ```
 Ruby >= 3.1.2

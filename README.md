@@ -23,6 +23,23 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). Yo
 - Turbo Frames used for liking/unliking posts to improve user experience
 - Tested with RSpec and Capybara (96% code coverage)
 
+## How to Use
+[Click here to view a live version on Heroku.](https://peaceful-gorge-29362.herokuapp.com/) (Note: Due to being on Heroku's free plan, initial load time may be longer than expected.)
+
+To run locally, you must have the following prerequisites:
+```
+Ruby >= 3.1.2
+Rails >= 7.0.3
+Bundler >= 2.3.6
+PostgreSQL >= 14.3
+```
+Then, clone this repo, `cd` into the project's root directory and run:
+```
+bundle install
+bin/rails server
+```
+Finally, visit http://localhost:3000/ to view the application.
+
 ## Known Bugs
 - No error message is displayed by Devise if wrong password is entered while logging in (may be due to an incompatibility with Rails 7 and Devise)
 - Profile photos are only displayed on a user's profile page
@@ -30,7 +47,7 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/). Yo
 
 ## Possible Improvements:
 - Allow users to change their username
-- Use Turbo Frames for other parts of the app to improve user experience
+- Use Turbo Frames for other parts of the app to emulate a single-page application and improve user experience
 - Allow posts to be edited/deleted
 - Allow comments to be deleted
 - Allow comments to be liked via polymorphic associations

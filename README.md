@@ -6,7 +6,7 @@ View a live version [on Heroku](https://peaceful-gorge-29362.herokuapp.com/).
 - You may log in by entering the username `user` and password `password`
 - **Note:** Due to being on Heroku's free plan, initial load time may be longer than expected
 
-![alt text](login_page.png?raw=true "screenshot of Odinbook's login page")
+![alt text](app_demo.gif?raw=true "video demo of Odinbook")
 
 This is the [final assignment ](https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project) for the Rails section of [The Odin Project](https://www.theodinproject.com).
 
@@ -63,7 +63,7 @@ Finally, visit http://localhost:3000/ to view the application.
 - Responsive design
 
 ## Reflections
-I knew this would be a very fun project right from the start, and it definitely was. Initially, I made a lot of rapid progress. A lot of the core functionality was implemented in less than a week. However, countless tweaks and adjustments to different aspects of the app ended up taking a considerable amount of time.
+I knew this would be a very fun project right from the start, and it definitely was. Initially, I made a lot of rapid progress. A lot of the core functionality was implemented in less than a week. However, implementation of some non-core features, the design and countless tweaks and adjustments to different aspects of the app ended up taking a considerable amount of time.
 
 The two most difficult implementations:
 - `Friendships`

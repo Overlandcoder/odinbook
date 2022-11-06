@@ -2,12 +2,28 @@
   <%= image_tag current_user.gravatar_url(default: :mm),
                 :class => "gravatar-home" %>
   <div class="col row ps-1">
-  <%= link_to "#{post.author.username.capitalize}", user_path(post.author.id),
-              class: "fw-semibold",
-              style: "text-decoration: none" %>
-  <p class="text-secondary" style="display: inline-block">
-    <%= post.created_time_formatted %>
-  </p>
+    <%= link_to "#{post.author.username.capitalize}", user_path(post.author.id),
+                class: "fw-semibold",
+                style: "text-decoration: none" %>
+    <div class="d-flex justify-content-between">
+      <p class="text-secondary" style="display: inline-block">
+        <%= post.created_time_formatted %>
+      </p>
+      <% if post.author == current_user %>
+        <%= button_to post_path(post),
+                      method: :delete,
+                      data: {
+                              turbo_confirm: "Are you sure?"
+                            },
+                      class: "btn btn-sm text-secondary me-4",
+                      style: "border: none" do
+        %>
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" />
+          </svg>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 

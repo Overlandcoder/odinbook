@@ -14,6 +14,6 @@ class Profile < ApplicationRecord
   end
 
   def display_location
-    location.empty? ? "" : location.capitalize
+    location.empty? ? "" : location.titleize
   end
 end

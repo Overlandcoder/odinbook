@@ -1,5 +1,5 @@
 <% user.posts.order("updated_at DESC").each do |post| %>
-  <div class="m-3 bg-light p-3 border rounded shadow-sm">
+  <div class="m-3 bg-light p-3 border rounded shadow-sm" style="word-wrap: break-word">
       <%= post.body %>
       <div class="d-flex mt-2 text-secondary align-items-center">
         <div class="me-3">

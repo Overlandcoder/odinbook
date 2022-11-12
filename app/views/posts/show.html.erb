@@ -2,10 +2,7 @@
   <div class="row justify-content-between">
     <div class="col-8">
       <%= link_to "Home", root_path, style: "text-decoration: none" %>
-        <div class="container mt-3 mb-4 p-3 border shadow-sm rounded"
-              style="background-color: #fff">
-          <%= render "post", post: @post %>
-        </div>
+        <%= render "post", post: @post %>
       <%= link_to "< Back", :back, style: "text-decoration: none" %>
     </div>
   </div>

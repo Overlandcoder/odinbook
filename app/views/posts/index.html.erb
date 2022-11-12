@@ -4,10 +4,7 @@
     <div class="row justify-content-between mt-2">
       <div class="col-8">
         <% @posts.each do |post| %>
-          <div class="container mb-4 p-3 border shadow-sm rounded"
-               style="background-color: #fff">
             <%= render "post", post: post %>
-          </div>
         <% end %>
       </div>
       <div class="col-3 border rounded shadow-sm h-25" style="background-color: #fff">

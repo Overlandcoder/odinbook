@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to post_path(@post.id)
+      redirect_to root_path
       flash[:notice] = "New post created."
     else
       render :new, status: :unprocessable_entity
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_back(fallback_location: root_path)
     flash[:alert] = "Post deleted."
   end
 

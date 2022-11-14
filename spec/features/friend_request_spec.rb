@@ -11,18 +11,18 @@ RSpec.describe 'FriendRequest', type: :feature do
     end
 
     it 'increments sent_friend_requests of the sender by 1' do
-      expect { click_on 'Add Friend' }.
-        to change { user1.sent_friend_requests.count }.from(0).to(1)
+      expect { click_on 'Add Friend' }
+        .to change { user1.sent_friend_requests.count }.from(0).to(1)
     end
 
     it 'increments received_friend_requests of the receiver by 1' do
-      expect { click_on 'Add Friend' }.
-        to change { user2.received_friend_requests.count }.from(0).to(1)
+      expect { click_on 'Add Friend' }
+        .to change { user2.received_friend_requests.count }.from(0).to(1)
     end
 
     it 'creates 1 friend request object only' do
-      expect { click_on 'Add Friend' }.
-        to change { FriendRequest.all.count }.from(0).to(1)
+      expect { click_on 'Add Friend' }
+        .to change { FriendRequest.all.count }.from(0).to(1)
     end
 
     it 'sends the request to the correct user' do
@@ -43,7 +43,7 @@ RSpec.describe 'FriendRequest', type: :feature do
 
     it 'shows the correct friend request' do
       visit user_friend_requests_path(user2.id)
-      expect(page).to have_content "#{user1.username.capitalize}"
+      expect(page).to have_content user1.username.capitalize
     end
   end
 
@@ -57,18 +57,18 @@ RSpec.describe 'FriendRequest', type: :feature do
     end
 
     it 'deletes the friend request' do
-      expect { click_on 'Accept' }.
-        to change { FriendRequest.all.count}.from(1).to(0)
+      expect { click_on 'Accept' }
+        .to change { FriendRequest.all.count }.from(1).to(0)
     end
 
     it 'deletes the friend request for the sender' do
-      expect { click_on 'Accept' }.
-        to change { user1.sent_friend_requests.count }.from(1).to(0)
+      expect { click_on 'Accept' }
+        .to change { user1.sent_friend_requests.count }.from(1).to(0)
     end
 
     it 'deletes the friend request for the receiver' do
-      expect { click_on 'Accept' }.
-        to change { user2.received_friend_requests.count }.from(1).to(0)
+      expect { click_on 'Accept' }
+        .to change { user2.received_friend_requests.count }.from(1).to(0)
     end
   end
 

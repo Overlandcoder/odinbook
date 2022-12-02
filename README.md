@@ -55,7 +55,7 @@ Finally, visit http://localhost:3000/ to view the application.
 ## Possible Improvements:
 - Allow users to change their username
 - Use Turbo Frames for other parts of the app to emulate a single-page application and improve user experience
-- Allow posts to be edited/deleted
+- Allow posts to be edited
 - Allow comments to be deleted
 - Allow comments to be liked via polymorphic associations
 - Require confirmation before letting a user remove a friend

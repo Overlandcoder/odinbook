@@ -1,38 +1,40 @@
-<div class="container mt-4 w-25">
-  <h2 class="mb-3 text-center">Friend Requests</h2>
-  <hr>
+<div class="row justify-content-center">
+  <div class="m-2 p-2" style="width: 650px">
+    <h2 class="mb-3 text-center">Friend Requests</h2>
+    <hr>
 
-  <% current_user.received_friend_requests.each do |request| %>
-    <div class="d-flex justify-content-between align-items-center rounded
-                shadow-sm bg-light p-3 mb-3">
-      <div>
-        <%= image_tag current_user.gravatar_url(default: :mm),
-            :class => "gravatar-nav me-2", style: "height: 40px" %>
-        <%= link_to "#{request.sender.username.capitalize}",
-            user_path(request.sender.id), class: "fw-bold",
-            style: "text-decoration: none" %>
+    <% current_user.received_friend_requests.each do |request| %>
+      <div class="d-flex justify-content-between align-items-center rounded
+                  shadow-sm bg-light p-3 mb-3 user-card">
+        <div>
+          <%= image_tag current_user.gravatar_url(default: :mm),
+              :class => "gravatar-nav me-2", style: "height: 40px" %>
+          <%= link_to "#{request.sender.username.capitalize}",
+              user_path(request.sender.id), class: "fw-bold",
+              style: "text-decoration: none" %>
+        </div>
+
+        <div class="d-flex">
+          <%= button_to "Accept",
+              user_friendships_path(current_user.id),
+              params: { friendship: { user_id: request.sender.id,
+                                      friend_id: current_user.id
+                                    }
+                      },
+              class: "btn btn-success me-3"
+          %>
+
+          <%= button_to "Decline",
+              user_friend_request_path(current_user.id, request.sender.id),
+              method: :delete,
+              params: { friend_request: { sender_id: request.sender.id,
+                                          receiver_id: current_user.id
+                                        }
+                      },
+              class: "btn btn-danger"
+          %>
+        </div>
       </div>
-
-      <div class="d-flex">
-        <%= button_to "Accept",
-            user_friendships_path(current_user.id),
-            params: { friendship: { user_id: request.sender.id,
-                                    friend_id: current_user.id
-                                  }
-                    },
-            class: "btn btn-success me-3"
-        %>
-
-        <%= button_to "Decline",
-            user_friend_request_path(current_user.id, request.sender.id),
-            method: :delete,
-            params: { friend_request: { sender_id: request.sender.id,
-                                        receiver_id: current_user.id
-                                      }
-                    },
-            class: "btn btn-danger"
-        %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

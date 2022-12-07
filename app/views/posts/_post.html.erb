@@ -70,12 +70,14 @@
       </div>
 
       <div class="d-flex me-3 justify-content-start align-items-center">
-        <div class="me-2">
-          <%= turbo_frame_tag "post_#{post.id}_like_count" do %>
+        <%= turbo_frame_tag "post_#{post.id}_like_count" do %>
+          <div class="like-count me-2">
             <a class="text-secondary me-1" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseLike<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
               <%= pluralize(post.likes.count, "Like") %>
             </a>
-          <% end %>
+          </div>
+        <% end %>
+        <div class="comment-count">
           <a class="text-secondary" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseComment<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
             <%= pluralize(post.comments.count, "Comment") %>
           </a>

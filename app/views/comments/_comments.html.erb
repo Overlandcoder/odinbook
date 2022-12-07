@@ -12,7 +12,7 @@
                         :class => "gravatar-comment me-1" %>
             <%= link_to "#{comment.commenter.username.capitalize}", user_path(comment.commenter.id),
               style: "text-decoration: none" %>
-            <div style="display: inline-block">
+            <div style="word-wrap: break-word">
               <%= comment.body %>
             </div>
           </div>

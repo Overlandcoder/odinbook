@@ -3,24 +3,22 @@
     <hr class="border border-2 opacity-75">
     <p>Comments</p>
   <% end %>
-  <div>
-    <% post.comments.ordered.each do |comment| %>
-      <div class="ps-2 pe-2">
+  <% post.comments.ordered.each do |comment| %>
+    <div class="mb-3 p-3 border rounded hover-shadow">
+      <div class="d-flex align-items-center">
         <div>
-          <div>
-            <%= image_tag current_user.gravatar_url(default: :mm),
-                        :class => "gravatar-comment me-1" %>
-            <%= link_to "#{comment.commenter.username.capitalize}", user_path(comment.commenter.id),
-              style: "text-decoration: none" %>
-            <div style="word-wrap: break-word">
-              <%= comment.body %>
-            </div>
-          </div>
-            <p class="text-secondary" style="display: inline-block">
-              <%= comment.created_time_formatted %>
-            </p>
+          <%= image_tag current_user.gravatar_url(default: :mm),
+                      :class => "gravatar-comment me-1" %>
+          <%= link_to "#{comment.commenter.username.capitalize}", user_path(comment.commenter.id),
+            style: "text-decoration: none" %>
         </div>
+          <p class="text-secondary m-0 ms-3">
+            <%= comment.created_time_formatted %>
+          </p>
       </div>
-    <% end %>
-  </div>
+      <div class="ms-5" style="word-wrap: break-word">
+        <%= comment.body %>
+      </div>
+    </div>
+  <% end %>
 </div>

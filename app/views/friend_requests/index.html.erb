@@ -5,7 +5,7 @@
 
     <% current_user.received_friend_requests.each do |request| %>
       <div class="d-flex justify-content-between align-items-center rounded
-                  shadow-sm bg-light p-3 mb-3 user-card">
+                  shadow-sm bg-light p-3 mb-3 user-card hover-shadow">
         <div>
           <%= image_tag request.sender.gravatar_url(default: :mm),
               :class => "gravatar-nav me-2", style: "height: 40px" %>

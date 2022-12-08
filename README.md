@@ -49,8 +49,6 @@ Finally, visit http://localhost:3000/ to view the application.
 
 ## Known Bugs
 - No error message is displayed by Devise if wrong password is entered while logging in (may be due to an incompatibility with Rails 7 and Devise)
-- Profile photos are only displayed on a user's profile page
-- Refactor `random_strangers` method in `app/models/user.rb`
 
 ## Possible Improvements:
 - Allow users to change their username

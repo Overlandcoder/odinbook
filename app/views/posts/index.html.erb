@@ -4,23 +4,24 @@
     <div class="row justify-content-between mt-2">
       <div class="col-8">
         <% @posts.order("updated_at DESC").each do |post| %>
-            <%= render "post", post: post %>
+          <%= render "post", post: post %>
         <% end %>
       </div>
       <div class="col-3 h-25 mt-3 d-flex flex-column">
-        <div class="border rounded shadow-sm hover-shadow" style="background-color: #fff">
+        <div class="border rounded shadow-sm hover-shadow bg-white">
           <h6 class="text-secondary m-3 mb-4">Suggested Users</h6>
           <%= render "shared/suggested_users", user: current_user %>
         </div>
-        <div class="border rounded mt-4 pb-3 shadow-sm hover-shadow" style="background-color: #fff">
+        <div class="border rounded mt-4 pb-3 shadow-sm hover-shadow bg-white">
           <h6 class="text-secondary m-3 mb-3">Newest User</h6>
           <div class="m-3 mb-0">
             <%= image_tag User.last.gravatar_url(default: :mm),
                           :class => "gravatar-comment me-1" %>
             <%= link_to User.last.username.titleize, user_path(User.last),
-                style: "text-decoration: none" %>
+                        style: "text-decoration: none" %>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

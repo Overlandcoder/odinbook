@@ -59,8 +59,9 @@ Finally, visit http://localhost:3000/ to view the application.
 - Allow comments to be deleted
 - Allow comments to be liked via polymorphic associations
 - Require confirmation before letting a user remove a friend
-- Improve layout of comments (very lengthy comments are displayed in an undesired manner)
 - Responsive design
+- Add `Liked Posts` section on user profiles
+- Add more validations
 
 ## Reflections
 I knew this would be a very fun project right from the start, and it definitely was. Initially, I made a lot of rapid progress. A lot of the core functionality was implemented in less than a week. However, implementation of some non-core features, the design and countless tweaks and adjustments to different aspects of the app ended up taking a considerable amount of time.

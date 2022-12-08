@@ -7,10 +7,10 @@
       <div class="d-flex justify-content-between align-items-center rounded
                   shadow-sm bg-light p-3 mb-3 user-card">
         <div>
-          <%= image_tag current_user.gravatar_url(default: :mm),
+          <%= image_tag request.sender.gravatar_url(default: :mm),
               :class => "gravatar-nav me-2", style: "height: 40px" %>
           <%= link_to "#{request.sender.username.capitalize}",
-              user_path(request.sender.id), class: "fw-bold",
+              user_path(request.sender), class: "fw-bold",
               style: "text-decoration: none" %>
         </div>
 

@@ -1,6 +1,6 @@
 <% user.random_strangers.each do |stranger| %>
   <div class="m-3">
-    <%= image_tag current_user.gravatar_url(default: :mm),
+    <%= image_tag stranger.gravatar_url(default: :mm),
                   :class => "gravatar-comment me-1" %>
     <%= link_to "#{stranger.username.capitalize}", user_path(stranger.id),
                 style: "text-decoration: none" %>

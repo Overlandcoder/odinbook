@@ -7,9 +7,9 @@
     <div class="mb-3 p-3 border rounded hover-shadow">
       <div class="d-flex align-items-center">
         <div>
-          <%= image_tag current_user.gravatar_url(default: :mm),
+          <%= image_tag comment.commenter.gravatar_url(default: :mm),
                       :class => "gravatar-comment me-1" %>
-          <%= link_to "#{comment.commenter.username.capitalize}", user_path(comment.commenter.id),
+          <%= link_to "#{comment.commenter.username.capitalize}", user_path(comment.commenter),
             style: "text-decoration: none" %>
         </div>
           <p class="text-secondary m-0 ms-3">

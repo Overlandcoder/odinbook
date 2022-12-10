@@ -14,7 +14,7 @@
     <% if @user == current_user %>
       <% if current_user.profile %>
         <%= button_to "Edit profile", edit_profile_path(current_user), method: "get",
-          class: "btn bg-warning bg-opacity-10 w-100 mb-4" %>
+          class: "btn bg-warning bg-opacity-50 hover-bg-warning w-100 mb-4" %>
       <% elsif @user.profile.nil? %>
         <%= button_to "Add profile info", new_profile_path(@user),
             method: "get", class: "btn btn-success w-100 mb-3" %>

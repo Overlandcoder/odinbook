@@ -58,7 +58,7 @@
       <p class="text-center">
         <%= "#{@user.username.capitalize} has added you as a friend." %>
       </p>
-      <div class="d-flex">
+      <div class="d-flex justify-content-center">
         <%= button_to "Accept", user_friendships_path(current_user.id),
             params: { friendship: { user_id: @user.id,
                                     friend_id: current_user.id

@@ -7,7 +7,7 @@
           <%= render "post", post: post %>
         <% end %>
       </div>
-      <div class="col-3 h-25 mt-3 d-flex flex-column">
+      <div class="col-3 h-25 mt-3 d-flex flex-column sticky-top affix">
         <div class="border rounded shadow-sm hover-shadow bg-white">
           <h6 class="text-secondary m-3 mb-4">Suggested Users</h6>
           <%= render "shared/suggested_users", user: current_user %>

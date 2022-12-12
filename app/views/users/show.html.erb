@@ -85,6 +85,9 @@
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Friends</button>
       </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="liked-posts-tab" data-bs-toggle="tab" data-bs-target="#liked-posts-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Liked posts</button>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
@@ -103,6 +106,15 @@
           </div>
         <% else %>
           <%= render "friendships/friends", user: @user %>
+        <% end %>
+      </div>
+      <div class="tab-pane fade" id="liked-posts-tab-pane" role="tabpanel" aria-labelledby="liked-posts-tab" tabindex="0">
+        <% if @user.liked_posts.count.zero? %>
+          <div class="p-3 text-secondary">
+            <%= "#{@user.username.capitalize} has not liked any posts" %>
+          </div>
+        <% else %>
+          <%= render "posts/liked_posts", user: @user %>
         <% end %>
       </div>
       <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>

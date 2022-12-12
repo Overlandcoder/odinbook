@@ -1,0 +1,3 @@
+<% user.liked_posts.ordered.each do |post| %>
+  <%= render "posts/post", post: post %>
+<% end %>

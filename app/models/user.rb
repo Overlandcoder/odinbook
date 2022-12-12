@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: :commenter_id, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_one :profile, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true

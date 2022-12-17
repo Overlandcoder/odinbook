@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="m-2 p-2" style="width: 650px">
-    <h2 class="mb-3 text-center">Friend Requests</h2>
+    <h2 class="mt-1 mb-3 text-center"><span class="text-success"><%= current_user.received_friend_requests.count %></span> Friend requests</h2>
     <hr>
 
     <% current_user.received_friend_requests.each do |request| %>

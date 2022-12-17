@@ -1,5 +1,5 @@
 <div class="row m-2 p-4 justify-content-center">
-  <div class="col-2 h-100 me-5 border rounded p-4 shadow-sm">
+  <div class="col-2 h-100 me-5 border rounded p-4 pb-2 shadow-sm">
     <div class="d-flex flex-column w-75">
       <%= image_tag @user.gravatar_url(default: :mm),
           class: "gravatar border w-100" %>
@@ -7,9 +7,8 @@
     </div>
     <hr class="m-0 mb-2">
 
-    <p><b><%= "#{@user.posts.count} " %></b><%= "post".pluralize(@user.posts.count) %></p>
-    <p class="mb-0"><b><%= "#{@user.friends.count} " %></b><%= "friend".pluralize(@user.friends.count) %></p>
-    <hr class="mt-2">
+    <p class="m-2"><b><%= "#{@user.posts.count} " %></b><%= "post".pluralize(@user.posts.count) %><span class="ms-3 me-3">•</span><b><%= "#{@user.friends.count} " %></b><%= "friend".pluralize(@user.friends.count) %></p>
+    <hr class="mt-1">
 
     <% if @user == current_user %>
       <% if current_user.profile %>

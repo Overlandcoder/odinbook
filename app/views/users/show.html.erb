@@ -7,7 +7,7 @@
     </div>
     <hr class="m-0 mb-2">
 
-    <p class="m-2"><b><%= "#{@user.posts.count} " %></b><%= "post".pluralize(@user.posts.count) %><span class="ms-3 me-3">•</span><b><%= "#{@user.friends.count} " %></b><%= "friend".pluralize(@user.friends.count) %></p>
+    <p class="m-2"><b><%= "#{@user.posts.count} " %></b><%= "post".pluralize(@user.posts.count) %><span class="ms-3 me-3">·</span><b><%= "#{@user.friends.count} " %></b><%= "friend".pluralize(@user.friends.count) %></p>
     <hr class="mt-1">
 
     <% if @user == current_user %>

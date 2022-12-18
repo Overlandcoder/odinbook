@@ -3,53 +3,55 @@
     <div class="d-flex me-4 flex-column align-items-center">
       <h1 class="text-info fw-bold mb-4 text-center">A place where ideas grow.</h1>
       <%= image_tag "pencil.jpg", class: "rounded float-start img-fluid shadow-sm",
-          style: "max-height: 50vh" %>
+          style: "max-width: 300px" %>
     </div>
 
-    <div class="ms-4 shadow pt-4 pb-2 ps-5 pe-5">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field mb-3">
-          <%= f.label :username, class: "form-label" %><br />
-          <%= f.text_field :username, autofocus: true, class: "form-control" %>
-        </div>
-
-        <div class="field mb-3">
-          <%= f.label :password, class: "form-label" %><br />
-          <%= f.password_field :password, autocomplete: "current-password",
-              class: "form-control" %>
-        </div>
-
-        <% if devise_mapping.rememberable? %>
+    <div>
+      <div class="ms-4 shadow pt-4 pb-4 ps-5 pe-5">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field mb-3">
-            <%= f.check_box :remember_me, class: "form-check-input" %>
-            <%= f.label :remember_me, class: "form-check-label" %>
+            <%= f.label :username, class: "form-label" %><br />
+            <%= f.text_field :username, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="field mb-3">
+            <%= f.label :password, class: "form-label" %><br />
+            <%= f.password_field :password, autocomplete: "current-password",
+                class: "form-control" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field mb-3">
+              <%= f.check_box :remember_me, class: "form-check-input" %>
+              <%= f.label :remember_me, class: "form-check-label" %>
+            </div>
+          <% end %>
+
+          <div class="actions mb-3">
+            <%= f.submit "Log in", class: "btn btn-lg btn-primary w-100" %>
           </div>
         <% end %>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot password?", new_password_path(resource_name),
+              style: "text-decoration: none" %><br />
+        <% end %>
+        <hr>
 
-        <div class="actions mb-3">
-          <%= f.submit "Log in", class: "btn btn-lg btn-primary w-100" %>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= button_to "Create new account", new_registration_path(resource_name),
+              method: "get", class: "btn btn-lg btn-success w-100" %><br />
+        <% end %>
+        
+        <div class="d-flex align-items-center" style="margin-top: -15px">
+          <hr class="w-50">
+          <span class="ms-4 me-4">or</span>
+          <hr class="w-50">
         </div>
-      <% end %>
-      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "Forgot password?", new_password_path(resource_name),
-            style: "text-decoration: none" %><br />
-      <% end %>
-      <hr>
-
-      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= button_to "Create new account", new_registration_path(resource_name),
-            method: "get", class: "btn btn-lg btn-success w-100" %><br />
-      <% end %>
-      
-      <div class="d-flex align-items-center" style="margin-top: -15px">
-        <hr class="w-50">
-        <span class="ms-4 me-4">or</span>
-        <hr class="w-50">
-      </div>
-      <div class="d-flex justify-content-center">
-        <%= button_to "Sign in with Facebook",
-            user_facebook_omniauth_authorize_path, :data => {turbo: "false"},
-            class: "btn text-primary m-0 p-0" %>
+        <div class="d-flex justify-content-center">
+          <%= button_to "Sign in with Facebook",
+              user_facebook_omniauth_authorize_path, :data => {turbo: "false"},
+              class: "btn text-primary m-0 p-0" %>
+        </div>
       </div>
     </div>
   </div>

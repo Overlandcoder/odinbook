@@ -21,7 +21,8 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
 
   validates :email, uniqueness: true
-  validates :username, uniqueness: true
+  validates :username, presence: true, uniqueness: true,
+                       length: { maximum: 15, too_long: "can't be longer than 15 characters" }
 
   after_create :send_welcome_email
 

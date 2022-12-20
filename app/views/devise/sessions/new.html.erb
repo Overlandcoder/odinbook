@@ -8,7 +8,7 @@
 
     <div>
       <div class="ms-4 shadow pt-4 pb-4 ps-5 pe-5">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
           <div class="field mb-3">
             <%= f.label :username, class: "form-label" %><br />
             <%= f.text_field :username, autofocus: true, class: "form-control" %>

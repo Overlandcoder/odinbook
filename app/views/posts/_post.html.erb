@@ -1,4 +1,4 @@
-<div class="container mt-3 mb-4 p-3 border shadow-sm rounded hover-shadow" style="background-color: #fff">
+<div class="container mt-3 mb-4 p-3 border shadow-sm rounded hover-shadow-dark" style="background-color: #fff">
   <div class="row">
     <%= image_tag post.author.gravatar_url(default: :mm),
                   :class => "gravatar-home" %>
@@ -70,17 +70,13 @@
 
       <div class="d-flex me-3 justify-content-start align-items-center">
         <%= turbo_frame_tag "post_#{post.id}_like_count" do %>
-          <div class="like-count me-2">
-            <a class="text-secondary like-count text-decoration-none" data-bs-toggle="collapse" href="#collapseLike<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <%= pluralize(post.likes.count, "Like") %>
-            </a>
-          </div>
-        <% end %>
-        <div class="comment-count">
-          <a class="text-secondary text-decoration-none" data-bs-toggle="collapse" href="#collapseComment<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <%= pluralize(post.comments.count, "Comment") %>
+          <a class="text-secondary me-2 like-count text-decoration-none" data-bs-toggle="collapse" href="#collapseLike<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <%= pluralize(post.likes.count, "Like") %>
           </a>
-        </div>
+        <% end %>
+        <a class="text-secondary comment-count ms-1 text-decoration-none" data-bs-toggle="collapse" href="#collapseComment<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%= pluralize(post.comments.count, "Comment") %>
+        </a>
       </div>
     </div>
   </div>

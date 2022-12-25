@@ -85,6 +85,18 @@
       .field_with_errors { 
         display: inline;
       }
+
+      .hover-border:after {
+        display: block;
+        content: '';
+        border-bottom: solid 3px #ffc107;
+        transform: scaleX(0);
+        transition: transform 300ms ease-in-out;
+      }
+
+      .hover-border:hover:after {
+        transform: scaleX(1);
+      }
   </style>
   </head>
 

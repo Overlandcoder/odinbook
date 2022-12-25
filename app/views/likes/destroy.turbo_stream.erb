@@ -1,5 +1,5 @@
 <%= turbo_stream.update "post_#{@post.id}_like_count" do %>
-  <a class="text-secondary me-1" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseLike<%= @post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <a class="text-secondary me-2" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseLike<%= @post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
     <%= pluralize(@post.likes.count, "Like") %>
   </a>
 <% end %>

@@ -4,7 +4,7 @@
                   :class => "gravatar-home" %>
     <div class="col row ps-1">
       <%= link_to "#{post.author.username.capitalize}", user_path(post.author.id),
-                  class: "fw-semibold text-decoration-none" %>
+                  class: "fw-semibold text-primary text-decoration-none" %>
       <div class="d-flex justify-content-between">
         <p class="text-secondary" style="display: inline-block">
           <%= post.created_time_formatted %>
@@ -71,7 +71,7 @@
       <div class="d-flex me-3 justify-content-start align-items-center">
         <%= turbo_frame_tag "post_#{post.id}_like_count" do %>
           <div class="like-count me-2">
-            <a class="text-secondary me-1 text-decoration-none" data-bs-toggle="collapse" href="#collapseLike<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="text-secondary like-count text-decoration-none" data-bs-toggle="collapse" href="#collapseLike<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
               <%= pluralize(post.likes.count, "Like") %>
             </a>
           </div>
